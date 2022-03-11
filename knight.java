@@ -1,10 +1,26 @@
-public class knight {
+import java.awt.Image;
+import java.io.IOException;
+import javax.swing.ImageIcon;
+
+@SuppressWarnings("serial")
+public class knight extends ImageIcon{
 	private int file;
 	private int rank;
 	private boolean isWhite;
 	
-	public knight(int file, int rank, boolean isWhite) {
-		
+	public knight(int rank, int file, boolean isWhite) throws IOException {
+		super();
+		if(isWhite) {
+			ImageIcon wPawn = new ImageIcon("wKnight.png");
+			Image i = wPawn.getImage();
+			Image j = i.getScaledInstance(70, 85, java.awt.Image.SCALE_SMOOTH);
+			setImage(j);
+		}else {
+			ImageIcon wPawn = new ImageIcon("bKnight.png");
+			Image i = wPawn.getImage();
+			Image j = i.getScaledInstance(70, 85, java.awt.Image.SCALE_SMOOTH);
+			setImage(j);
+		}
 	}
 
 	public int getFile() {

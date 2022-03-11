@@ -1,10 +1,26 @@
-public class king {
+import java.awt.Image;
+import java.io.IOException;
+import javax.swing.ImageIcon;
+
+@SuppressWarnings("serial")
+public class king extends ImageIcon{
 	private int file;
 	private int rank;
 	private boolean isWhite;
 	
-	public king(int file, int rank, boolean isWhite) {
-		
+	public king(int rank, int file, boolean isWhite) throws IOException {
+		super();
+		if(isWhite) {
+			ImageIcon wPawn = new ImageIcon("wKing.png");
+			Image i = wPawn.getImage();
+			Image j = i.getScaledInstance(70, 85, java.awt.Image.SCALE_SMOOTH);
+			setImage(j);
+		}else {
+			ImageIcon wPawn = new ImageIcon("bKing.png");
+			Image i = wPawn.getImage();
+			Image j = i.getScaledInstance(70, 85, java.awt.Image.SCALE_SMOOTH);
+			setImage(j);
+		}
 	}
 
 	public int getFile() {

@@ -1,10 +1,26 @@
-public class rook {
+import java.awt.Image;
+import java.io.IOException;
+import javax.swing.ImageIcon;
+
+@SuppressWarnings("serial")
+public class rook extends ImageIcon{
 	private int file;
 	private int rank;
 	private boolean isWhite;
 	
-	public rook(int file, int rank, boolean isWhite) {
-		
+	public rook(int rank, int file, boolean isWhite) throws IOException {
+		super();
+		if(isWhite) {
+			ImageIcon wPawn = new ImageIcon("wRook.jpg");
+			Image i = wPawn.getImage();
+			Image j = i.getScaledInstance(70, 85, java.awt.Image.SCALE_SMOOTH);
+			setImage(j);
+		}else {
+			ImageIcon wPawn = new ImageIcon("bRook.png");
+			Image i = wPawn.getImage();
+			Image j = i.getScaledInstance(70, 85, java.awt.Image.SCALE_SMOOTH);
+			setImage(j);
+		}
 	}
 
 	public int getFile() {
