@@ -32,7 +32,8 @@ public class queen {
 	}
 
 	public void move(int file, int rank) {
-		
+		setFile(file);
+		setRank(rank);
 	}
 	
 	public boolean isLegal(int file, int rank) {
