@@ -48,7 +48,7 @@ public class pawn extends ImageIcon{
 		this.isWhite = isWhite;
 	}
 
-	public void move(int file, int rank, boolean isLegal) {
+	public void move(int file, int rank) {
 		setFile(file);
 		setRank(rank);
 	}
