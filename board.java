@@ -3,7 +3,6 @@ import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.Label;
 import java.io.IOException;
-
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -24,7 +23,7 @@ public class board extends JPanel{
 					JPanel s = new JPanel();
 					s.setBackground(new Color(0xc6d6df));
 					chessBoard[rank][file] = s;
-					add(c[rank][file]);
+					add(chessBoard[rank][file]);
 				}else {
 					JPanel s = new JPanel();
 					s.setBackground(new Color(0x779ab0));
