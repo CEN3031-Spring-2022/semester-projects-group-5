@@ -5,7 +5,7 @@ import java.io.IOException;
 import javax.swing.ImageIcon;
 
 @SuppressWarnings("serial")
-public class knight extends ImageIcon implements MouseListener{
+public class knight extends ImageIcon{
 	private int file;
 	private int rank;
 	private boolean isWhite;
