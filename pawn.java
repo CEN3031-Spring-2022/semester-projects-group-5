@@ -63,31 +63,6 @@ public class pawn extends ImageIcon implements MouseListener{
 		
 	}
 
-	public void mouseClicked(MouseEvent e) {
-		for(int rank = 0; rank < 8; rank++) {
-			for(int file = 0; file < 8; file++) {
-				if(isLegal(file, rank)) {
-					
-				}
-			}
-		}
-	}
-
-	public void mousePressed(MouseEvent e) {
-		
-	}
-
-	public void mouseReleased(MouseEvent e) {
-		
-	}
-
-	public void mouseEntered(MouseEvent e) {
-		
-	}
-
-	public void mouseExited(MouseEvent e) {
-		
-	}
 	public int getTimesMoved() {
 		return timesMoved;
 	}
