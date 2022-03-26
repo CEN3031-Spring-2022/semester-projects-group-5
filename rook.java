@@ -1,12 +1,15 @@
 import java.awt.Image;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.io.IOException;
 import javax.swing.ImageIcon;
 
 @SuppressWarnings("serial")
-public class rook extends ImageIcon{
+public class rook extends ImageIcon implements MouseListener{
 	private int file;
 	private int rank;
 	private boolean isWhite;
+	private int timesMoved;
 	
 	public rook(int rank, int file, boolean isWhite) throws IOException {
 		super();
@@ -64,6 +67,44 @@ public class rook extends ImageIcon{
 			legal = true;
 		}
 		return legal;
+	}
+
+	public int getTimesMoved() {
+		return timesMoved;
+	}
+
+	public void setTimesMoved(int timesMoved) {
+		this.timesMoved = timesMoved;
+	}
+
+	@Override
+	public void mouseClicked(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mousePressed(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseReleased(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseEntered(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseExited(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
 	}
 	
 }
