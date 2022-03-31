@@ -123,4 +123,3 @@ public class bishop extends JLabel{
 		return legal;
 	}
 }
-
