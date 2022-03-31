@@ -73,21 +73,29 @@ public class king extends JLabel{
 	}
 	
 	public boolean isLegal(int file, int rank) {
-		for(int i = 0; i <= 7; i++){
-			for(int j = 0; j <=7; j++){
-				if((rank == getRank() + 1) && (file == (getRank()+1))){
-					return true;
-				}
-				if((rank == getRank() + 1) && (file == getFile() - 1)){
-					return true;
-				}
-				if((rank == getRank() - 1) && (file == getFile() + 1)){
-					return true;
-				}
-				if((rank == getRank() - 1) && (file == getFile() -1)){
-					return true;
-				}
-			}
+		if((getRank() == rank + 1) && (getFile() == (file+1))){
+			return true;
+		}
+		if((getRank() == rank + 1) && (getFile() == file - 1)){
+			return true;
+		}
+		if((getRank() == rank - 1) && (getFile() == file + 1)){
+			return true;
+		}
+		if((getRank() == rank - 1) && (getFile() == file -1)){
+			return true;
+		}
+		if((getRank() == rank) && (getFile() == (file+1))){
+			return true;
+		}
+		if((getRank() == rank + 1) && (getFile() == file)){
+			return true;
+		}
+		if((getRank() == rank) && (getFile() == file - 1)){
+			return true;
+		}
+		if((getRank() == rank - 1) && (getFile() == file)){
+			return true;
 		}
 		return false;
 	}
