@@ -40,7 +40,7 @@ public class bishop extends JLabel{
 			public void mouseExited(MouseEvent e) {
 				
 			}
-		});
+		};
 	}
 
 	public int getFile() {
@@ -70,6 +70,16 @@ public class bishop extends JLabel{
 	public void move(int file, int rank) {
 		setFile(file);
 		setRank(rank);
+	}
+	
+	public void highlightLegal() {
+		for(int rank = 0; rank < 8; rank++) {
+			for(int file = 0; file < 8; file++) {
+				if(isLegal(file, rank)) {
+					
+				}
+			}
+		}
 	}
 	
 	public void highlightLegal() {
@@ -122,6 +132,5 @@ public class bishop extends JLabel{
 		}
 		return legal;
 	}
-	
 }
 
