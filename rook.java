@@ -77,13 +77,8 @@ public class rook extends JLabel{
 	
 	public boolean isLegal(int file, int rank) {
 		boolean legal = false;
-		int currFile;
-		int currRank;
 		
-		currRank = getRank();
-		currFile = getFile();
-		
-		if((currFile == getFile()) && (currRank != getRank()) || ((currFile != getFile()) && (currRank == getRank()))){
+		if((file == getFile()) && (rank != getRank()) || ((file != getFile()) && (rank == getRank()))){
 			legal = true;
 		}
 		return legal;
