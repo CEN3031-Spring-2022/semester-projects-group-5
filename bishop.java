@@ -1,11 +1,11 @@
-import java.awt.Image;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.io.IOException;
 import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 
 @SuppressWarnings("serial")
-public class bishop extends ImageIcon{
+public class bishop extends JLabel{
 	private int file;
 	private int rank;
 	private boolean isWhite;
@@ -14,16 +14,33 @@ public class bishop extends ImageIcon{
 	public bishop(int rank, int file, boolean isWhite) throws IOException {
 		super();
 		if(isWhite) {
-			ImageIcon wPawn = new ImageIcon("wBish.png");
-			Image i = wPawn.getImage();
-			Image j = i.getScaledInstance(70, 85, java.awt.Image.SCALE_SMOOTH);
-			setImage(j);
+			ImageIcon wBish = new ImageIcon("wBish.png");
+			setIcon(wBish);
 		}else {
-			ImageIcon wPawn = new ImageIcon("bBish.png");
-			Image i = wPawn.getImage();
-			Image j = i.getScaledInstance(70, 85, java.awt.Image.SCALE_SMOOTH);
-			setImage(j);
+			ImageIcon bBish = new ImageIcon("bBish.png");
+			setIcon(bBish);
 		}
+		addMouseListener(new MouseListener() {
+			public void mouseClicked(MouseEvent e) {
+				System.out.println("bish");
+			}
+
+			public void mousePressed(MouseEvent e) {
+				
+			}
+
+			public void mouseReleased(MouseEvent e) {
+				
+			}
+
+			public void mouseEntered(MouseEvent e) {
+				
+			}
+
+			public void mouseExited(MouseEvent e) {
+				
+			}
+		});
 	}
 
 	public int getFile() {
@@ -55,9 +72,14 @@ public class bishop extends ImageIcon{
 		setRank(rank);
 	}
 	
-	public boolean isLegal(int file, int rank) {
-		boolean legal = false;
-		return legal;
+	public void highlightLegal() {
+		for(int rank = 0; rank < 8; rank++) {
+			for(int file = 0; file < 8; file++) {
+				if(isLegal(file, rank)) {
+					
+				}
+			}
+		}
 	}
 
 	public int getTimesMoved() {
@@ -67,5 +89,39 @@ public class bishop extends ImageIcon{
 	public void setTimesMoved(int timesMoved) {
 		this.timesMoved = timesMoved;
 	}
+
+	public boolean isLegal(int file, int rank) {
+		boolean legal = false;
+		int x = getRank();
+		int y = getFile();
+		
+		for(int i = 0; i <= 7; i++)
+		{
+			for(int j = 0; j <= 7; j++)
+			{
+				if(rank == (x+1) && file == (y+1))
+				{
+					legal = true;
+				}
+				
+				if(rank == (x+1) && file == (y-1))
+				{
+					legal = true;
+				}
+				
+				if(rank == (x-1) && file == (y+1))
+				{
+					legal = true;
+				}
+				
+				if(rank == (x-1) && file == (y-1))
+				{
+					legal = true;
+				}
+			}
+		}
+		return legal;
+	}
 	
 }
+

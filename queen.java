@@ -1,11 +1,11 @@
-import java.awt.Image;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.io.IOException;
 import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 
 @SuppressWarnings("serial")
-public class queen extends ImageIcon{
+public class queen extends JLabel{
 	private int file;
 	private int rank;
 	private boolean isWhite;
@@ -14,16 +14,33 @@ public class queen extends ImageIcon{
 	public queen(int rank, int file, boolean isWhite) throws IOException {
 		super();
 		if(isWhite) {
-			ImageIcon wPawn = new ImageIcon("wQueen.png");
-			Image i = wPawn.getImage();
-			Image j = i.getScaledInstance(70, 85, java.awt.Image.SCALE_SMOOTH);
-			setImage(j);
+			ImageIcon wQueen = new ImageIcon("wQueen.png");
+			setIcon(wQueen);
 		}else {
-			ImageIcon wPawn = new ImageIcon("bQueen.png");
-			Image i = wPawn.getImage();
-			Image j = i.getScaledInstance(70, 85, java.awt.Image.SCALE_SMOOTH);
-			setImage(j);
+			ImageIcon bQueen = new ImageIcon("bQueen.png");
+			setIcon(bQueen);
 		}
+		addMouseListener(new MouseListener() {
+			public void mouseClicked(MouseEvent e) {
+				System.out.println("queen");
+			}
+
+			public void mousePressed(MouseEvent e) {
+				
+			}
+
+			public void mouseReleased(MouseEvent e) {
+				
+			}
+
+			public void mouseEntered(MouseEvent e) {
+				
+			}
+
+			public void mouseExited(MouseEvent e) {
+				
+			}
+		});
 	}
 
 	public int getFile() {
@@ -58,6 +75,16 @@ public class queen extends ImageIcon{
 	public boolean isLegal(int file, int rank) {
 		boolean legal = false;
 		return legal;
+	}
+	
+	public void highlightLegal() {
+		for(int rank = 0; rank < 8; rank++) {
+			for(int file = 0; file < 8; file++) {
+				if(isLegal(file, rank)) {
+					
+				}
+			}
+		}
 	}
 
 	public int getTimesMoved() {

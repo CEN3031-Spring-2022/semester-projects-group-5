@@ -2,10 +2,13 @@ import java.awt.Image;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.io.IOException;
+
+import javax.swing.Icon;
 import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 
 @SuppressWarnings("serial")
-public class pawn extends ImageIcon{
+public class pawn extends JLabel{
 	private int file;
 	private int rank;
 	private boolean isWhite;
@@ -14,17 +17,35 @@ public class pawn extends ImageIcon{
 	public pawn(int rank, int file, boolean isWhite) throws IOException {
 		super();
 		if(isWhite) {
-			ImageIcon wPawn = new ImageIcon("wPawn.png");
-			Image i = wPawn.getImage();
-			Image j = i.getScaledInstance(70, 85, java.awt.Image.SCALE_SMOOTH);
-			setImage(j);
+			Icon wPawn = new ImageIcon("wPawn.png");
+			setIcon(wPawn);
 		}else {
-			ImageIcon wPawn = new ImageIcon("bPawn.png");
-			Image i = wPawn.getImage();
-			Image j = i.getScaledInstance(70, 85, java.awt.Image.SCALE_SMOOTH);
-			setImage(j);
+			Icon bPawn = new ImageIcon("bPawn.png");
+			setIcon(bPawn);
 		}
+		addMouseListener(new MouseListener() {
+			public void mouseClicked(MouseEvent e) {
+				System.out.println("pawn");
+			}
+
+			public void mousePressed(MouseEvent e) {
+				
+			}
+
+			public void mouseReleased(MouseEvent e) {
+				
+			}
+
+			public void mouseEntered(MouseEvent e) {
+				
+			}
+
+			public void mouseExited(MouseEvent e) {
+				
+			}
+		});
 	}
+	
 	public int getFile() {
 		return file;
 	}
@@ -56,7 +77,15 @@ public class pawn extends ImageIcon{
 	
 	public boolean isLegal(int file, int rank) {
 		boolean legal = false;
+		int moves = getTimesMoved();
+		if(moves == 0) {
+			
+		}
 		return legal;
+	}
+	
+	public void highlightLegal() {
+		
 	}
 	
 	public void enPassant() {
@@ -66,6 +95,7 @@ public class pawn extends ImageIcon{
 	public int getTimesMoved() {
 		return timesMoved;
 	}
+	
 	public void setTimesMoved(int timesMoved) {
 		this.timesMoved = timesMoved;
 	}
