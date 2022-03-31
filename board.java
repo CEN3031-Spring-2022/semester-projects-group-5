@@ -1,13 +1,12 @@
 import java.awt.Color;
 import java.awt.GridLayout;
-import java.awt.Image;
 import java.io.IOException;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 @SuppressWarnings("serial")
 public class board extends JPanel{
-	private int numPieces = 0;
+	private int numPieces = 32;
 	private JPanel[][] chessBoard;
 	
 	public board() throws IOException{
@@ -19,7 +18,7 @@ public class board extends JPanel{
 			for(int file = 0; file < 8; file++) {
 				if(white) {
 					JPanel s = new JPanel();
-					s.setBackground(new Color(0xc6d6df));
+					s.setBackground(new Color(0xc6d6df)); // 0xc6d6df
 					chessBoard[rank][file] = s;
 					add(chessBoard[rank][file]);
 				}else {
@@ -70,7 +69,31 @@ public class board extends JPanel{
 		chessBoard[7][4].add(new king(0, 0, true), JLabel.CENTER);
 	}
 	
-	public void deletePiece(Image i) {
+	public JPanel[][] getChessBoard() {
+		return chessBoard;
+	}
+
+	public void setChessBoard(JPanel[][] chessBoard) {
+		this.chessBoard = chessBoard;
+		System.out.println("board updated");
+	}
+	
+	public void updateChessBoard(board board) {
 		
+		this.chessBoard = board.getChessBoard();
+	}
+
+	public void deletePiece() {
+		
+	}
+	
+	public boolean isEmpty(int file, int rank) {
+		boolean empty = false;
+		JPanel[][] board = getChessBoard();
+		
+		if(board[rank][file].getComponentCount() == 0) {
+			empty = true;
+		}
+		return empty;
 	}
 }

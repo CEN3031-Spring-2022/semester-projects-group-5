@@ -40,7 +40,7 @@ public class bishop extends JLabel{
 			public void mouseExited(MouseEvent e) {
 				
 			}
-		};
+		});
 	}
 
 	public int getFile() {

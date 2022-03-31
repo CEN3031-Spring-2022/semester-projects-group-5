@@ -1,3 +1,4 @@
+import java.awt.Color;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.io.IOException;
@@ -14,6 +15,7 @@ public class pawn extends JLabel{
 	
 	public pawn(int rank, int file, boolean isWhite) throws IOException {
 		super();
+		timesMoved = 0;
 		if(isWhite) {
 			Icon wPawn = new ImageIcon("wPawn.png");
 			setIcon(wPawn);
@@ -24,6 +26,12 @@ public class pawn extends JLabel{
 		addMouseListener(new MouseListener() {
 			public void mouseClicked(MouseEvent e) {
 				System.out.println("pawn");
+				try {
+					highlightLegal();
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 			}
 
 			public void mousePressed(MouseEvent e) {
@@ -41,7 +49,7 @@ public class pawn extends JLabel{
 			public void mouseExited(MouseEvent e) {
 				
 			}
-		};
+		});
 	}
 	
 	public int getFile() {
@@ -77,23 +85,22 @@ public class pawn extends JLabel{
 		boolean legal = false;
 		int moves = getTimesMoved();
 		if(moves == 0) {
-
 			if(isWhite) {
-				if((file == getFile() && rank == (getRank()+1)) || (file == getFile() && rank == (getRank()+2))) {
+				if((getFile() == file && getRank() == (rank-1)) || (getFile() == getFile() && getRank() == (rank-2))) {
 					legal = true;
 				}
 			}else {
-				if((file == getFile() && rank == (getRank()-1)) || (file == getFile() && rank == (getRank()-2))) {
+				if((getFile() == file && getRank() == (rank+1)) || (getFile() == getFile() && getRank() == (rank+2))) {
 					legal = true;
 				}
 			}
 		}else {
 			if(isWhite) {
-				if((file == getFile() && rank == (getRank()+1))) {
+				if((getFile() == file && getRank() == (rank-1))) {
 					legal = true;
 				}
 			}else {
-				if((file == getFile() && rank == (getRank()-1))) {
+				if((getFile() == file && getRank() == (rank+1))) {
 					legal = true;
 				}
 			}
@@ -101,14 +108,19 @@ public class pawn extends JLabel{
 		return legal;
 	}
 	
-	public void highlightLegal() {
+	public void highlightLegal() throws IOException {
+		System.out.println("highlight called");
+		board cBoard = new board();
+		cBoard.getChessBoard();
 		for(int rank = 0; rank < 8; rank++) {
 			for(int file = 0; file < 8; file++) {
 				if(isLegal(file, rank)) {
-					
+					cBoard.getChessBoard()[rank][file].setBackground(new Color(0xFAFF8E));
+					System.out.println(getRank() + "  " + (rank) + "  " + isWhite());
 				}
 			}
 		}
+		cBoard.setChessBoard(cBoard.getChessBoard());
 	}
 	
 	public void enPassant() {
