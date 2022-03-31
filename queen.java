@@ -74,6 +74,46 @@ public class queen extends JLabel{
 	
 	public boolean isLegal(int file, int rank) {
 		boolean legal = false;
+		for(int i = 0; i <= 7; i++ ){
+			for(int j = 0; j <=7; j++){
+				if((rank == getRank() + 1) && (file == getFile())){
+					legal = true;
+				}
+				if((rank == getRank() - 1) && (file == getFile())){
+					legal = true;
+				}
+				if((rank == getRank()) && (file == getFile() + 1)){
+					legal = true;
+				}
+				if((rank == getRank()) && (file == getFile() - 1)){
+					legal = true;
+				}
+				if((getRank() == rank + 1) && (getFile() == (file+1))){
+					legal = true;
+				}
+				if((getRank() == rank + 1) && (getFile() == file - 1)){
+					legal = true;
+				}
+				if((getRank() == rank - 1) && (getFile() == file + 1)){
+					legal = true;
+				}
+				if((getRank() == rank - 1) && (getFile() == file -1)){
+					legal = true;
+				}
+				if((getRank() == rank) && (getFile() == (file+1))){
+					legal = true;
+				}
+				if((getRank() == rank + 1) && (getFile() == file)){
+					legal = true;
+				}
+				if((getRank() == rank) && (getFile() == file - 1)){
+					legal = true;
+				}
+				if((getRank() == rank - 1) && (getFile() == file)){
+					legal = true;
+				}
+			}
+		}
 		return legal;
 	}
 	
