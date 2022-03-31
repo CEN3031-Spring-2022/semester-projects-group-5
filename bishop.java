@@ -81,16 +81,6 @@ public class bishop extends JLabel{
 			}
 		}
 	}
-	
-	public void highlightLegal() {
-		for(int rank = 0; rank < 8; rank++) {
-			for(int file = 0; file < 8; file++) {
-				if(isLegal(file, rank)) {
-					
-				}
-			}
-		}
-	}
 
 	public int getTimesMoved() {
 		return timesMoved;
