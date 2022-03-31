@@ -74,7 +74,23 @@ public class knight extends JLabel{
 	
 	public boolean isLegal(int file, int rank) {
 		boolean legal = false;
+		if((file == getFile() + 1 && rank == getRank() + 2) || (file == getFile() + 2 && rank == getRank() + 1) || (file == getFile() - 1 && rank == getRank() + 2) || (file == getFile() - 2 && rank == getRank() + 1)) {
+			legal = true;
+		}
+		if((file == getFile() - 1 && rank == getRank() - 2) || (file == getFile() - 2 && rank == getRank() - 1) || (file == getFile() + 1 && rank == getRank() - 2) || (file == getFile() + 2 && rank == getRank() - 1)) {
+			legal = true;
+		}
 		return legal;
+	}
+	
+	public void highlightLegal() {
+		for(int rank = 0; rank < 8; rank++) {
+			for(int file = 0; file < 8; file++) {
+				if(isLegal(file, rank)) {
+					
+				}
+			}
+		}
 	}
 
 	public int getTimesMoved() {
