@@ -3,9 +3,10 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.io.IOException;
 import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 
 @SuppressWarnings("serial")
-public class knight extends ImageIcon{
+public class knight extends JLabel{
 	private int file;
 	private int rank;
 	private boolean isWhite;
@@ -14,16 +15,33 @@ public class knight extends ImageIcon{
 	public knight(int rank, int file, boolean isWhite) throws IOException {
 		super();
 		if(isWhite) {
-			ImageIcon wPawn = new ImageIcon("wKnight.png");
-			Image i = wPawn.getImage();
-			Image j = i.getScaledInstance(70, 85, java.awt.Image.SCALE_SMOOTH);
-			setImage(j);
+			ImageIcon wKnight = new ImageIcon("wKnight.png");
+			setIcon(wKnight);
 		}else {
-			ImageIcon wPawn = new ImageIcon("bKnight.png");
-			Image i = wPawn.getImage();
-			Image j = i.getScaledInstance(70, 85, java.awt.Image.SCALE_SMOOTH);
-			setImage(j);
+			ImageIcon bKnight = new ImageIcon("bKnight.png");
+			setIcon(bKnight);
 		}
+		addMouseListener(new MouseListener() {
+			public void mouseClicked(MouseEvent e) {
+				System.out.println("knight");
+			}
+
+			public void mousePressed(MouseEvent e) {
+				
+			}
+
+			public void mouseReleased(MouseEvent e) {
+				
+			}
+
+			public void mouseEntered(MouseEvent e) {
+				
+			}
+
+			public void mouseExited(MouseEvent e) {
+				
+			}
+		});
 	}
 
 	public int getFile() {

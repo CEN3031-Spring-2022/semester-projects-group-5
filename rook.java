@@ -2,10 +2,13 @@ import java.awt.Image;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.io.IOException;
+
+import javax.swing.Icon;
 import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 
 @SuppressWarnings("serial")
-public class rook extends ImageIcon{
+public class rook extends JLabel{
 	private int file;
 	private int rank;
 	private boolean isWhite;
@@ -14,16 +17,33 @@ public class rook extends ImageIcon{
 	public rook(int rank, int file, boolean isWhite) throws IOException {
 		super();
 		if(isWhite) {
-			ImageIcon wPawn = new ImageIcon("wRook.jpg");
-			Image i = wPawn.getImage();
-			Image j = i.getScaledInstance(70, 85, java.awt.Image.SCALE_SMOOTH);
-			setImage(j);
+			Icon wRook = new ImageIcon("wRook.jpg");
+			setIcon(wRook);
 		}else {
-			ImageIcon wPawn = new ImageIcon("bRook.png");
-			Image i = wPawn.getImage();
-			Image j = i.getScaledInstance(70, 85, java.awt.Image.SCALE_SMOOTH);
-			setImage(j);
+			ImageIcon bRook = new ImageIcon("bRook.png");
+			setIcon(bRook);
 		}
+		addMouseListener(new MouseListener() {
+			public void mouseClicked(MouseEvent e) {
+				System.out.println("rook");
+			}
+
+			public void mousePressed(MouseEvent e) {
+				
+			}
+
+			public void mouseReleased(MouseEvent e) {
+				
+			}
+
+			public void mouseEntered(MouseEvent e) {
+				
+			}
+
+			public void mouseExited(MouseEvent e) {
+				
+			}
+		});
 	}
 
 	public int getFile() {
@@ -76,5 +96,4 @@ public class rook extends ImageIcon{
 	public void setTimesMoved(int timesMoved) {
 		this.timesMoved = timesMoved;
 	}
-	
 }

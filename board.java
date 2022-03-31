@@ -46,28 +46,28 @@ public class board extends JPanel{
 
 	public void setBoard() throws IOException {
 		for(int file = 0; file < 8; file++) {
-			chessBoard[6][file].add(new JLabel(new pawn(6, file, true), JLabel.CENTER));
+			chessBoard[6][file].add(new pawn(6, file, true), JLabel.CENTER);
 		}
 		for(int file = 0; file < 8; file++) {
-			chessBoard[1][file].add(new JLabel(new pawn(6, file, false), JLabel.CENTER));
+			chessBoard[1][file].add(new pawn(6, file, false), JLabel.CENTER);
 		}
-		chessBoard[0][0].add(new JLabel(new rook(0, 0, false), JLabel.CENTER));
-		chessBoard[0][7].add(new JLabel(new rook(0, 0, false), JLabel.CENTER));
-		chessBoard[0][1].add(new JLabel(new knight(0, 0, false), JLabel.CENTER));
-		chessBoard[0][6].add(new JLabel(new knight(0, 0, false), JLabel.CENTER));
-		chessBoard[0][2].add(new JLabel(new bishop(0, 0, false), JLabel.CENTER));
-		chessBoard[0][5].add(new JLabel(new bishop(0, 0, false), JLabel.CENTER));
-		chessBoard[0][3].add(new JLabel(new queen(0, 0, false), JLabel.CENTER));
-		chessBoard[0][4].add(new JLabel(new king(0, 0, false), JLabel.CENTER));
+		chessBoard[0][0].add(new rook(0, 0, false), JLabel.CENTER);
+		chessBoard[0][7].add(new rook(0, 0, false), JLabel.CENTER);
+		chessBoard[0][1].add(new knight(0, 0, false), JLabel.CENTER);
+		chessBoard[0][6].add(new knight(0, 0, false), JLabel.CENTER);
+		chessBoard[0][2].add(new bishop(0, 0, false), JLabel.CENTER);
+		chessBoard[0][5].add(new bishop(0, 0, false), JLabel.CENTER);
+		chessBoard[0][3].add(new queen(0, 0, false), JLabel.CENTER);
+		chessBoard[0][4].add(new king(0, 0, false), JLabel.CENTER);
 		
-		chessBoard[7][0].add(new JLabel(new rook(0, 0, true), JLabel.CENTER));
-		chessBoard[7][7].add(new JLabel(new rook(0, 0, true), JLabel.CENTER));
-		chessBoard[7][1].add(new JLabel(new knight(0, 0, true), JLabel.CENTER));
-		chessBoard[7][6].add(new JLabel(new knight(0, 0, true), JLabel.CENTER));
-		chessBoard[7][2].add(new JLabel(new bishop(0, 0, true), JLabel.CENTER));
-		chessBoard[7][5].add(new JLabel(new bishop(0, 0, true), JLabel.CENTER));
-		chessBoard[7][3].add(new JLabel(new queen(0, 0, true), JLabel.CENTER));
-		chessBoard[7][4].add(new JLabel(new king(0, 0, true), JLabel.CENTER));
+		chessBoard[7][0].add(new rook(0, 0, true), JLabel.CENTER);
+		chessBoard[7][7].add(new rook(0, 0, true), JLabel.CENTER);
+		chessBoard[7][1].add(new knight(0, 0, true), JLabel.CENTER);
+		chessBoard[7][6].add(new knight(0, 0, true), JLabel.CENTER);
+		chessBoard[7][2].add(new bishop(0, 0, true), JLabel.CENTER);
+		chessBoard[7][5].add(new bishop(0, 0, true), JLabel.CENTER);
+		chessBoard[7][3].add(new queen(0, 0, true), JLabel.CENTER);
+		chessBoard[7][4].add(new king(0, 0, true), JLabel.CENTER);
 	}
 	
 	public void deletePiece(Image i) {
