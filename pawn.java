@@ -79,13 +79,37 @@ public class pawn extends JLabel{
 		boolean legal = false;
 		int moves = getTimesMoved();
 		if(moves == 0) {
-			
+			if(isWhite) {
+				if((file == getFile() && rank == (getRank()+1)) || (file == getFile() && rank == (getRank()+2))) {
+					legal = true;
+				}
+			}else {
+				if((file == getFile() && rank == (getRank()-1)) || (file == getFile() && rank == (getRank()-2))) {
+					legal = true;
+				}
+			}
+		}else {
+			if(isWhite) {
+				if((file == getFile() && rank == (getRank()+1))) {
+					legal = true;
+				}
+			}else {
+				if((file == getFile() && rank == (getRank()-1))) {
+					legal = true;
+				}
+			}
 		}
 		return legal;
 	}
 	
 	public void highlightLegal() {
-		
+		for(int rank = 0; rank < 8; rank++) {
+			for(int file = 0; file < 8; file++) {
+				if(isLegal(file, rank)) {
+					
+				}
+			}
+		}
 	}
 	
 	public void enPassant() {
