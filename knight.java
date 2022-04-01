@@ -13,6 +13,11 @@ public class knight extends JLabel{
 	
 	public knight(int rank, int file, boolean isWhite) throws IOException {
 		super();
+		this.file = file;
+		this.rank = rank;
+		this.isWhite = isWhite;
+		timesMoved = 0;
+		
 		if(isWhite) {
 			ImageIcon wKnight = new ImageIcon("wKnight.png");
 			setIcon(wKnight);

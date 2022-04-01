@@ -13,6 +13,11 @@ public class queen extends JLabel{
 	
 	public queen(int rank, int file, boolean isWhite) throws IOException {
 		super();
+		this.file = file;
+		this.rank = rank;
+		this.isWhite = isWhite;
+		timesMoved = 0;
+		
 		if(isWhite) {
 			ImageIcon wQueen = new ImageIcon("wQueen.png");
 			setIcon(wQueen);
@@ -74,45 +79,36 @@ public class queen extends JLabel{
 	
 	public boolean isLegal(int file, int rank) {
 		boolean legal = false;
-		for(int i = 0; i <= 7; i++ ){
-			for(int j = 0; j <=7; j++){
-				if((rank == getRank() + 1) && (file == getFile())){
+		int x = getRank();
+		int y = getFile();
+		
+		for(int i = 0; i <= 7; i++)
+		{
+			for(int j = 0; j <= 7; j++)
+			{
+				if(rank == (x+1) && file == (y+1))
+				{
 					legal = true;
 				}
-				if((rank == getRank() - 1) && (file == getFile())){
+				
+				if(rank == (x+1) && file == (y-1))
+				{
 					legal = true;
 				}
-				if((rank == getRank()) && (file == getFile() + 1)){
+				
+				if(rank == (x-1) && file == (y+1))
+				{
 					legal = true;
 				}
-				if((rank == getRank()) && (file == getFile() - 1)){
-					legal = true;
-				}
-				if((getRank() == rank + 1) && (getFile() == (file+1))){
-					legal = true;
-				}
-				if((getRank() == rank + 1) && (getFile() == file - 1)){
-					legal = true;
-				}
-				if((getRank() == rank - 1) && (getFile() == file + 1)){
-					legal = true;
-				}
-				if((getRank() == rank - 1) && (getFile() == file -1)){
-					legal = true;
-				}
-				if((getRank() == rank) && (getFile() == (file+1))){
-					legal = true;
-				}
-				if((getRank() == rank + 1) && (getFile() == file)){
-					legal = true;
-				}
-				if((getRank() == rank) && (getFile() == file - 1)){
-					legal = true;
-				}
-				if((getRank() == rank - 1) && (getFile() == file)){
+				
+				if(rank == (x-1) && file == (y-1))
+				{
 					legal = true;
 				}
 			}
+		}
+		if((file == getFile()) && (rank != getRank()) || ((file != getFile()) && (rank == getRank()))){
+			legal = true;
 		}
 		return legal;
 	}

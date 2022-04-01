@@ -15,7 +15,14 @@ public class pawn extends JLabel{
 	
 	public pawn(int rank, int file, boolean isWhite) throws IOException {
 		super();
+		this.file = file;
+		this.rank = rank;
+		this.isWhite = isWhite;
 		timesMoved = 0;
+		
+//		System.out.println("file: " + file);
+//		System.out.println("getFile(): " + getFile());
+		
 		if(isWhite) {
 			Icon wPawn = new ImageIcon("wPawn.png");
 			setIcon(wPawn);
@@ -82,30 +89,31 @@ public class pawn extends JLabel{
 	}
 	
 	public boolean isLegal(int file, int rank) {
-		boolean legal = false;
 		int moves = getTimesMoved();
 		if(moves == 0) {
 			if(isWhite) {
 				if((getFile() == file && getRank() == (rank-1)) || (getFile() == getFile() && getRank() == (rank-2))) {
-					legal = true;
+					System.out.println("file: " + file);
+					System.out.println("getFile(): " + getFile());
+					return true;
 				}
 			}else {
 				if((getFile() == file && getRank() == (rank+1)) || (getFile() == getFile() && getRank() == (rank+2))) {
-					legal = true;
+					return true;
 				}
 			}
 		}else {
 			if(isWhite) {
 				if((getFile() == file && getRank() == (rank-1))) {
-					legal = true;
+					return true;
 				}
 			}else {
 				if((getFile() == file && getRank() == (rank+1))) {
-					legal = true;
+					return true;
 				}
 			}
 		}
-		return legal;
+		return false;
 	}
 	
 	public void highlightLegal() throws IOException {
@@ -116,7 +124,6 @@ public class pawn extends JLabel{
 			for(int file = 0; file < 8; file++) {
 				if(isLegal(file, rank)) {
 					cBoard.getChessBoard()[rank][file].setBackground(new Color(0xFAFF8E));
-					System.out.println(getRank() + "  " + (rank) + "  " + isWhite());
 				}
 			}
 		}
