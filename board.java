@@ -51,22 +51,22 @@ public class board extends JPanel{
 			chessBoard[1][file].add(new pawn(6, file, false), JLabel.CENTER);
 		}
 		chessBoard[0][0].add(new rook(0, 0, false), JLabel.CENTER);
-		chessBoard[0][7].add(new rook(0, 0, false), JLabel.CENTER);
-		chessBoard[0][1].add(new knight(0, 0, false), JLabel.CENTER);
-		chessBoard[0][6].add(new knight(0, 0, false), JLabel.CENTER);
-		chessBoard[0][2].add(new bishop(0, 0, false), JLabel.CENTER);
-		chessBoard[0][5].add(new bishop(0, 0, false), JLabel.CENTER);
-		chessBoard[0][3].add(new queen(0, 0, false), JLabel.CENTER);
-		chessBoard[0][4].add(new king(0, 0, false), JLabel.CENTER);
+		chessBoard[0][7].add(new rook(0, 7, false), JLabel.CENTER);
+		chessBoard[0][1].add(new knight(0, 1, false), JLabel.CENTER);
+		chessBoard[0][6].add(new knight(0, 6, false), JLabel.CENTER);
+		chessBoard[0][2].add(new bishop(0, 2, false), JLabel.CENTER);
+		chessBoard[0][5].add(new bishop(0, 5, false), JLabel.CENTER);
+		chessBoard[0][3].add(new queen(0, 3, false), JLabel.CENTER);
+		chessBoard[0][4].add(new king(0, 4, false), JLabel.CENTER);
 		
-		chessBoard[7][0].add(new rook(0, 0, true), JLabel.CENTER);
-		chessBoard[7][7].add(new rook(0, 0, true), JLabel.CENTER);
-		chessBoard[7][1].add(new knight(0, 0, true), JLabel.CENTER);
-		chessBoard[7][6].add(new knight(0, 0, true), JLabel.CENTER);
-		chessBoard[7][2].add(new bishop(0, 0, true), JLabel.CENTER);
-		chessBoard[7][5].add(new bishop(0, 0, true), JLabel.CENTER);
-		chessBoard[7][3].add(new queen(0, 0, true), JLabel.CENTER);
-		chessBoard[7][4].add(new king(0, 0, true), JLabel.CENTER);
+		chessBoard[7][0].add(new rook(7, 0, true), JLabel.CENTER);
+		chessBoard[7][7].add(new rook(7, 7, true), JLabel.CENTER);
+		chessBoard[7][1].add(new knight(7, 1, true), JLabel.CENTER);
+		chessBoard[7][6].add(new knight(7, 6, true), JLabel.CENTER);
+		chessBoard[7][2].add(new bishop(7, 2, true), JLabel.CENTER);
+		chessBoard[7][5].add(new bishop(7, 5, true), JLabel.CENTER);
+		chessBoard[7][3].add(new queen(7, 3, true), JLabel.CENTER);
+		chessBoard[7][4].add(new king(7, 4, true), JLabel.CENTER);
 	}
 	
 	public JPanel[][] getChessBoard() {

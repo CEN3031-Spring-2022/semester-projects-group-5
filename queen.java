@@ -25,27 +25,27 @@ public class queen extends JLabel{
 			ImageIcon bQueen = new ImageIcon("bQueen.png");
 			setIcon(bQueen);
 		}
-		addMouseListener(new MouseListener() {
-			public void mouseClicked(MouseEvent e) {
-				System.out.println("queen");
-			}
-
-			public void mousePressed(MouseEvent e) {
-				
-			}
-
-			public void mouseReleased(MouseEvent e) {
-				
-			}
-
-			public void mouseEntered(MouseEvent e) {
-				
-			}
-
-			public void mouseExited(MouseEvent e) {
-				
-			}
-		});
+//		addMouseListener(new MouseListener() {
+//			public void mouseClicked(MouseEvent e) {
+//				System.out.println("queen");
+//			}
+//
+//			public void mousePressed(MouseEvent e) {
+//				
+//			}
+//
+//			public void mouseReleased(MouseEvent e) {
+//				
+//			}
+//
+//			public void mouseEntered(MouseEvent e) {
+//				
+//			}
+//
+//			public void mouseExited(MouseEvent e) {
+//				
+//			}
+//		});
 	}
 
 	public int getFile() {

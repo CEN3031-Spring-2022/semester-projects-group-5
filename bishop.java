@@ -13,6 +13,11 @@ public class bishop extends JLabel{
 	
 	public bishop(int rank, int file, boolean isWhite) throws IOException {
 		super();
+		this.file = file;
+		this.rank = rank;
+		this.isWhite = isWhite;
+		timesMoved = 0;
+		
 		if(isWhite) {
 			ImageIcon wBish = new ImageIcon("wBish.png");
 			setIcon(wBish);
@@ -20,27 +25,27 @@ public class bishop extends JLabel{
 			ImageIcon bBish = new ImageIcon("bBish.png");
 			setIcon(bBish);
 		}
-		addMouseListener(new MouseListener() {
-			public void mouseClicked(MouseEvent e) {
-				System.out.println("bish");
-			}
-
-			public void mousePressed(MouseEvent e) {
-				
-			}
-
-			public void mouseReleased(MouseEvent e) {
-				
-			}
-
-			public void mouseEntered(MouseEvent e) {
-				
-			}
-
-			public void mouseExited(MouseEvent e) {
-				
-			}
-		});
+//		addMouseListener(new MouseListener() {
+//			public void mouseClicked(MouseEvent e) {
+//				System.out.println("bish");
+//			}
+//
+//			public void mousePressed(MouseEvent e) {
+//				
+//			}
+//
+//			public void mouseReleased(MouseEvent e) {
+//				
+//			}
+//
+//			public void mouseEntered(MouseEvent e) {
+//				
+//			}
+//
+//			public void mouseExited(MouseEvent e) {
+//				
+//			}
+//		});
 	}
 
 	public int getFile() {
@@ -72,6 +77,11 @@ public class bishop extends JLabel{
 		setRank(rank);
 	}
 	
+	public boolean isLegal(int file, int rank) {
+		boolean legal = false;
+		return legal;
+	}
+	
 	public void highlightLegal() {
 		for(int rank = 0; rank < 8; rank++) {
 			for(int file = 0; file < 8; file++) {
@@ -88,38 +98,5 @@ public class bishop extends JLabel{
 
 	public void setTimesMoved(int timesMoved) {
 		this.timesMoved = timesMoved;
-	}
-
-	public boolean isLegal(int file, int rank) {
-		boolean legal = false;
-		int x = getRank();
-		int y = getFile();
-		
-		for(int i = 0; i <= 7; i++)
-		{
-			for(int j = 0; j <= 7; j++)
-			{
-				if(rank == (x+1) && file == (y+1))
-				{
-					legal = true;
-				}
-				
-				if(rank == (x+1) && file == (y-1))
-				{
-					legal = true;
-				}
-				
-				if(rank == (x-1) && file == (y+1))
-				{
-					legal = true;
-				}
-				
-				if(rank == (x-1) && file == (y-1))
-				{
-					legal = true;
-				}
-			}
-		}
-		return legal;
 	}
 }

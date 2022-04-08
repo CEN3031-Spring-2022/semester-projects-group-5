@@ -14,6 +14,11 @@ public class rook extends JLabel{
 	
 	public rook(int rank, int file, boolean isWhite) throws IOException {
 		super();
+		this.file = file;
+		this.rank = rank;
+		this.isWhite = isWhite;
+		timesMoved = 0;
+		
 		if(isWhite) {
 			Icon wRook = new ImageIcon("wRook.jpg");
 			setIcon(wRook);
@@ -21,27 +26,27 @@ public class rook extends JLabel{
 			ImageIcon bRook = new ImageIcon("bRook.png");
 			setIcon(bRook);
 		}
-		addMouseListener(new MouseListener() {
-			public void mouseClicked(MouseEvent e) {
-				System.out.println("rook");
-			}
-
-			public void mousePressed(MouseEvent e) {
-				
-			}
-
-			public void mouseReleased(MouseEvent e) {
-				
-			}
-
-			public void mouseEntered(MouseEvent e) {
-				
-			}
-
-			public void mouseExited(MouseEvent e) {
-				
-			}
-		});
+//		addMouseListener(new MouseListener() {
+//			public void mouseClicked(MouseEvent e) {
+//				System.out.println("rook");
+//			}
+//
+//			public void mousePressed(MouseEvent e) {
+//				
+//			}
+//
+//			public void mouseReleased(MouseEvent e) {
+//				
+//			}
+//
+//			public void mouseEntered(MouseEvent e) {
+//				
+//			}
+//
+//			public void mouseExited(MouseEvent e) {
+//				
+//			}
+//		});
 	}
 
 	public int getFile() {

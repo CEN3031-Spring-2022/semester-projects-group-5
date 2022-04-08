@@ -20,9 +20,6 @@ public class pawn extends JLabel{
 		this.isWhite = isWhite;
 		timesMoved = 0;
 		
-//		System.out.println("file: " + file);
-//		System.out.println("getFile(): " + getFile());
-		
 		if(isWhite) {
 			Icon wPawn = new ImageIcon("wPawn.png");
 			setIcon(wPawn);
@@ -30,33 +27,33 @@ public class pawn extends JLabel{
 			Icon bPawn = new ImageIcon("bPawn.png");
 			setIcon(bPawn);
 		}
-		addMouseListener(new MouseListener() {
-			public void mouseClicked(MouseEvent e) {
-				System.out.println("pawn");
-				try {
-					highlightLegal();
-				} catch (IOException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
-			}
-
-			public void mousePressed(MouseEvent e) {
-				
-			}
-
-			public void mouseReleased(MouseEvent e) {
-				
-			}
-
-			public void mouseEntered(MouseEvent e) {
-				
-			}
-
-			public void mouseExited(MouseEvent e) {
-				
-			}
-		});
+//		addMouseListener(new MouseListener() {
+//			public void mouseClicked(MouseEvent e) {
+//				System.out.println("pawn");
+//				try {
+//					highlightLegal();
+//				} catch (IOException e1) {
+//					// TODO Auto-generated catch block
+//					e1.printStackTrace();
+//				}
+//			}
+//
+//			public void mousePressed(MouseEvent e) {
+//				
+//			}
+//
+//			public void mouseReleased(MouseEvent e) {
+//				
+//			}
+//
+//			public void mouseEntered(MouseEvent e) {
+//				
+//			}
+//
+//			public void mouseExited(MouseEvent e) {
+//				
+//			}
+//		});
 	}
 	
 	public int getFile() {
@@ -93,8 +90,6 @@ public class pawn extends JLabel{
 		if(moves == 0) {
 			if(isWhite) {
 				if((getFile() == file && getRank() == (rank-1)) || (getFile() == getFile() && getRank() == (rank-2))) {
-					System.out.println("file: " + file);
-					System.out.println("getFile(): " + getFile());
 					return true;
 				}
 			}else {

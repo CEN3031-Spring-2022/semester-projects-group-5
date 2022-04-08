@@ -25,27 +25,27 @@ public class knight extends JLabel{
 			ImageIcon bKnight = new ImageIcon("bKnight.png");
 			setIcon(bKnight);
 		}
-		addMouseListener(new MouseListener() {
-			public void mouseClicked(MouseEvent e) {
-				System.out.println("knight");
-			}
-
-			public void mousePressed(MouseEvent e) {
-				
-			}
-
-			public void mouseReleased(MouseEvent e) {
-				
-			}
-
-			public void mouseEntered(MouseEvent e) {
-				
-			}
-
-			public void mouseExited(MouseEvent e) {
-				
-			}
-		});
+//		addMouseListener(new MouseListener() {
+//			public void mouseClicked(MouseEvent e) {
+//				System.out.println("knight");
+//			}
+//
+//			public void mousePressed(MouseEvent e) {
+//				
+//			}
+//
+//			public void mouseReleased(MouseEvent e) {
+//				
+//			}
+//
+//			public void mouseEntered(MouseEvent e) {
+//				
+//			}
+//
+//			public void mouseExited(MouseEvent e) {
+//				
+//			}
+//		});
 	}
 
 	public int getFile() {
