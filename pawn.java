@@ -2,12 +2,15 @@ import java.awt.Color;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.io.IOException;
+import java.util.ArrayList;
+
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
 
 @SuppressWarnings("serial")
-public class pawn extends JLabel{
+public class pawn extends JLabel implements piece{
 	private int file;
 	private int rank;
 	private boolean isWhite;
@@ -87,13 +90,14 @@ public class pawn extends JLabel{
 	
 	public boolean isLegal(int file, int rank) {
 		int moves = getTimesMoved();
+		
 		if(moves == 0) {
 			if(isWhite) {
-				if((getFile() == file && getRank() == (rank-1)) || (getFile() == getFile() && getRank() == (rank-2))) {
+				if((getFile() == file && getRank() == (rank-1)) || (getFile() == file && getRank() == (rank-2))) {
 					return true;
 				}
 			}else {
-				if((getFile() == file && getRank() == (rank+1)) || (getFile() == getFile() && getRank() == (rank+2))) {
+				if((getFile() == file && getRank() == (rank+1)) || (getFile() == file && getRank() == (rank+2))) {
 					return true;
 				}
 			}
@@ -111,18 +115,19 @@ public class pawn extends JLabel{
 		return false;
 	}
 	
-	public void highlightLegal() throws IOException {
-		System.out.println("highlight called");
+	public ArrayList<JPanel> highlightLegal() throws IOException {
 		board cBoard = new board();
 		cBoard.getChessBoard();
+		ArrayList<JPanel> legalMoves = new ArrayList<JPanel>();
 		for(int rank = 0; rank < 8; rank++) {
 			for(int file = 0; file < 8; file++) {
 				if(isLegal(file, rank)) {
-					cBoard.getChessBoard()[rank][file].setBackground(new Color(0xFAFF8E));
+					legalMoves.add(cBoard.getChessBoard()[rank][file]);
 				}
 			}
 		}
-		cBoard.setChessBoard(cBoard.getChessBoard());
+		//System.out.println("Legal Moves: " + legalMoves);
+		return legalMoves;
 	}
 	
 	public void enPassant() {

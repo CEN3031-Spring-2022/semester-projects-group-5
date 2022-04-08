@@ -3,6 +3,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.io.IOException;
 import javax.swing.JFrame;
+import javax.swing.JPanel;
 
 public class chessTester{
 	public static void main(String[] args) throws IOException {
@@ -11,7 +12,7 @@ public class chessTester{
 		board board = new board();
 		game.add(board, BorderLayout.CENTER);
 		game.setVisible(true);
-		//game.pack();
+		game.pack();
 		game.setSize(817,840);
 		game.setResizable(false);
 		game.setDefaultCloseOperation(3);
@@ -22,12 +23,16 @@ public class chessTester{
 				int X = e.getX();
 				int Y = e.getY();
 				
-				System.out.println(board.getComponentAt(X, Y));
-				
-//				game.remove(board);
-//				board.getChessBoard();
-//				game.add(board, BorderLayout.CENTER);
-//				
+				try {
+					if(board.findPiece((JPanel) board.getComponentAt(X, Y)) != null) {
+						System.out.println("hi "+ board.findPiece((JPanel) board.getComponentAt(X, Y)));
+						board.highlight(board.findPiece((JPanel) board.getComponentAt(X, Y)).highlightLegal());
+					}
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				board.getChessBoard();
 			}
 
 			@Override

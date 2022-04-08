@@ -1,11 +1,14 @@
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.io.IOException;
+import java.util.ArrayList;
+
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
 
 @SuppressWarnings("serial")
-public class knight extends JLabel{
+public class knight extends JLabel implements piece{
 	private int file;
 	private int rank;
 	private boolean isWhite;
@@ -88,14 +91,18 @@ public class knight extends JLabel{
 		return legal;
 	}
 	
-	public void highlightLegal() {
+	public ArrayList<JPanel> highlightLegal() throws IOException {
+		board cBoard = new board();
+		cBoard.getChessBoard();
+		ArrayList<JPanel> legalMoves = new ArrayList<JPanel>();
 		for(int rank = 0; rank < 8; rank++) {
 			for(int file = 0; file < 8; file++) {
 				if(isLegal(file, rank)) {
-					
+					legalMoves.add(cBoard.getChessBoard()[rank][file]);
 				}
 			}
 		}
+		return legalMoves;
 	}
 
 	public int getTimesMoved() {

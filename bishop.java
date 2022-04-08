@@ -1,11 +1,14 @@
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.io.IOException;
+import java.util.ArrayList;
+
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
 
 @SuppressWarnings("serial")
-public class bishop extends JLabel{
+public class bishop extends JLabel implements piece{
 	private int file;
 	private int rank;
 	private boolean isWhite;
@@ -79,17 +82,49 @@ public class bishop extends JLabel{
 	
 	public boolean isLegal(int file, int rank) {
 		boolean legal = false;
-		return legal;
-	}
-	
-	public void highlightLegal() {
-		for(int rank = 0; rank < 8; rank++) {
-			for(int file = 0; file < 8; file++) {
-				if(isLegal(file, rank)) {
-					
+		int x = getRank();
+		int y = getFile();
+
+		for(int i = 0; i <= 7; i++)
+		{
+			for(int j = 0; j <= 7; j++)
+			{
+				if(rank == (x+1) && file == (y+1))
+				{
+					legal = true;
+				}
+
+				if(rank == (x+1) && file == (y-1))
+				{
+					legal = true;
+				}
+
+				if(rank == (x-1) && file == (y+1))
+				{
+					legal = true;
+				}
+
+				if(rank == (x-1) && file == (y-1))
+				{
+					legal = true;
 				}
 			}
 		}
+		return legal;
+	}
+	
+	public ArrayList<JPanel> highlightLegal() throws IOException {
+		board cBoard = new board();
+		cBoard.getChessBoard();
+		ArrayList<JPanel> legalMoves = new ArrayList<JPanel>();
+		for(int rank = 0; rank < 8; rank++) {
+			for(int file = 0; file < 8; file++) {
+				if(isLegal(file, rank)) {
+					legalMoves.add(cBoard.getChessBoard()[rank][file]);
+				}
+			}
+		}
+		return legalMoves;
 	}
 
 	public int getTimesMoved() {
