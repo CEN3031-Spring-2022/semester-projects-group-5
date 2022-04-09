@@ -11,6 +11,8 @@ public class chessTester{
 		game.setLayout(new BorderLayout());
 		board board = new board();
 		game.add(board, BorderLayout.CENTER);
+		scoreboard score = new scoreboard();
+		game.add(score, BorderLayout.SOUTH);
 		game.setVisible(true);
 		game.pack();
 		game.setSize(817,840);
