@@ -158,4 +158,16 @@ public class board extends JPanel{
 		}
 		return empty;
 	}
+	/*
+	public boolean inCheck(int file, int rank) {
+		boolean check = false;
+		for (piece Piece : piecesArray) {
+			if (Piece.isLegal(file, rank)){
+			check = true; }
+		}
+	}
+	public boolean checkmate(int file, int rank) {
+	}
+	
+	*/
 }
