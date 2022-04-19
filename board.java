@@ -168,15 +168,18 @@ public abstract class Board
 		
 		Player whitePly = new Player(ply1Name, "white");
 		Player blackPly = new Player(ply2Name, "black");
+		
+		MainMenu mainMenu = new MainMenu();
+		frame.add(mainMenu);
 		BoardGui boardOnGui = new BoardGui();
-		frame.add(boardOnGui);
+		//frame.add(boardOnGui);
 		
 		Scoreboard score = new Scoreboard(ply1Name, ply2Name);
 		frame.add(score, BorderLayout.SOUTH);
 		frame.setVisible(true);
 		frame.pack();
-		frame.setSize(800,800);
-		frame.setResizable(true);
+		frame.setSize(817,866);
+		frame.setResizable(false);
 		frame.setDefaultCloseOperation(3);
 		
 		setup(); 
