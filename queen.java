@@ -1,140 +1,206 @@
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-import java.io.IOException;
-import java.util.ArrayList;
-
-import javax.swing.ImageIcon;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-
-@SuppressWarnings("serial")
-public class queen extends JLabel implements piece{
-	private int file;
-	private int rank;
-	private boolean isWhite;
-	private int timesMoved;
-	
-	public queen(int rank, int file, boolean isWhite) throws IOException {
-		super();
-		this.file = file;
-		this.rank = rank;
-		this.isWhite = isWhite;
-		timesMoved = 0;
+public class Queen extends Piece
+{
+	public Queen(String colorIn) 
+	{
+		super(colorIn, "queen");
 		
-		if(isWhite) {
-			ImageIcon wQueen = new ImageIcon("wQueen.png");
-			setIcon(wQueen);
-		}else {
-			ImageIcon bQueen = new ImageIcon("bQueen.png");
-			setIcon(bQueen);
-		}
-//		addMouseListener(new MouseListener() {
-//			public void mouseClicked(MouseEvent e) {
-//				System.out.println("queen");
-//			}
-//
-//			public void mousePressed(MouseEvent e) {
-//				
-//			}
-//
-//			public void mouseReleased(MouseEvent e) {
-//				
-//			}
-//
-//			public void mouseEntered(MouseEvent e) {
-//				
-//			}
-//
-//			public void mouseExited(MouseEvent e) {
-//				
-//			}
-//		});
-	}
-
-	public int getFile() {
-		return file;
-	}
-
-	public void setFile(int file) {
-		this.file = file;
-	}
-
-	public int getRank() {
-		return rank;
-	}
-
-	public void setRank(int rank) {
-		this.rank = rank;
-	}
-
-	public boolean isWhite() {
-		return isWhite;
-	}
-
-	public void setWhite(boolean isWhite) {
-		this.isWhite = isWhite;
-	}
-
-	public void move(int file, int rank) {
-		setFile(file);
-		setRank(rank);
-	}
-	
-	public boolean isLegal(int file, int rank) {
-		boolean legal = false;
-		int x = getRank();
-		int y = getFile();
-		
-		for(int i = 0; i <= 7; i++)
+		if(color == "white")
 		{
-			for(int j = 0; j <= 7; j++)
+			symbol = "wQu";
+		}
+		else
+		{
+			symbol = "bQu";
+		}
+	}
+	@Override
+	public boolean checkMove(int[] moveFromReq, int[] moveToReq, String plyColor, boolean testKing) 
+	{
+		
+		int moveFromRank = moveFromReq[0];
+		int moveFromFile = moveFromReq[1];
+		int moveToX = moveToReq[0];
+		int moveToY = moveToReq[1];
+		
+		Square toSquare = Board.board[moveToY][moveToX];
+		
+		String direction;
+		String type;
+		
+		if(!testKing)
+		{
+			if(toSquare.getType() == "king")
 			{
-				if(rank == (x+1) && file == (y+1))
+				return false;
+			}
+		}
+		
+		if(moveToY == moveFromFile)
+		{
+			if(moveToX > moveFromRank)
+			{
+				direction = "right";
+				type = "straight";
+			}
+			else
+			{
+				direction = "left";
+				type = "straight";
+			}
+		}
+		
+		else if(moveToX == moveFromRank)
+		{
+			if(moveToY > moveFromFile)
+			{
+				direction = "bot";
+				type = "straight";
+			}
+			else
+			{
+				direction = "top";
+				type = "straight";
+			}
+		}
+		else if(moveToX > moveFromRank)
+		{
+			if(moveToY < moveFromFile)
+			{
+				direction = "topRight";
+				type = "diagonal";
+			}
+			else
+			{
+				direction = "botRight";
+				type = "diagonal";
+			}
+		}
+		else if(moveToX < moveFromRank)
+		{
+			if(moveToY < moveFromFile)
+			{
+				direction = "topLeft";
+				type = "diagonal";
+			}
+			else
+			{
+				direction = "botLeft";
+				type = "diagonal";
+			}
+		}
+		else
+		{
+			return false;
+		}
+		
+		Square testSquare;
+		
+		if(type == "diagonal")
+		{
+			int moveDistance = Math.abs(moveToX - moveFromRank);
+		
+			for(int diagMoveAway = 1; diagMoveAway <= moveDistance; diagMoveAway++)
+			{
+				if(direction == "topRight")
 				{
-					legal = true;
+					testSquare = Board.board[moveFromFile - diagMoveAway][moveFromRank + diagMoveAway];
 				}
-				
-				if(rank == (x+1) && file == (y-1))
+				else if(direction == "botRight")
 				{
-					legal = true;
+					testSquare = Board.board[moveFromFile + diagMoveAway][moveFromRank + diagMoveAway];
 				}
-				
-				if(rank == (x-1) && file == (y+1))
+				else if(direction == "topLeft")
 				{
-					legal = true;
+					testSquare = Board.board[moveFromFile - diagMoveAway][moveFromRank - diagMoveAway];
 				}
-				
-				if(rank == (x-1) && file == (y-1))
+				else
+				{ 
+					testSquare = Board.board[moveFromFile + diagMoveAway][moveFromRank - diagMoveAway];
+				}
+			
+				if((testSquare.getType() != "blank") && (diagMoveAway != moveDistance))
 				{
-					legal = true;
+					return false;
+				}
+				else if((diagMoveAway == moveDistance) && ((testSquare.getColor() != plyColor) || (testSquare.getType() == "blank")))
+				{
+					return true;
 				}
 			}
 		}
-		if((file == getFile()) && (rank != getRank()) || ((file != getFile()) && (rank == getRank()))){
-			legal = true;
-		}
-		return legal;
-	}
-	
-	public ArrayList<JPanel> highlightLegal() throws IOException {
-		board cBoard = new board();
-		cBoard.getChessBoard();
-		ArrayList<JPanel> legalMoves = new ArrayList<JPanel>();
-		for(int rank = 0; rank < 8; rank++) {
-			for(int file = 0; file < 8; file++) {
-				if(isLegal(file, rank)) {
-					legalMoves.add(cBoard.getChessBoard()[rank][file]);
+		else
+		{
+			if((direction == "right") || (direction == "left"))
+			{
+				int displaceMax = Math.abs(moveToX - moveFromRank);
+		
+				for(int displace = 1; displace <= displaceMax; displace++)
+				{
+					if(direction == "right")
+					{
+						testSquare = Board.board[moveFromFile][moveFromRank + displace];
+					
+						if((testSquare.getType() != "blank") && (displace != displaceMax))
+						{
+							return false;
+						}
+						else if((displace == displaceMax) && ((testSquare.getType() == "blank") || (testSquare.getColor() != plyColor)))
+						{
+							return true;
+						}
+					}
+					else
+					{
+						testSquare = Board.board[moveFromFile][moveFromRank - displace];
+					
+						if((testSquare.getType() != "blank") && (displace != displaceMax))
+						{
+							return false;
+						}
+						else if((displace == displaceMax) && ((testSquare.getType() == "blank") || (testSquare.getColor() != plyColor)))
+						{
+							return true;
+						}
+					}
+				}
+			}
+			else
+			{
+				int displaceMax = Math.abs(moveToY - moveFromFile);
+				
+				for(int displace = 1; displace <= displaceMax; displace++)
+				{	
+				
+					if(direction == "top")
+					{
+						testSquare = Board.board[moveFromFile - displace][moveFromRank];
+					
+						if((testSquare.getType() != "blank") && (displace != displaceMax))
+						{
+							return false;
+						}
+						else if((displace == displaceMax) && ((testSquare.getType() == "blank") || (testSquare.getColor() != plyColor)))
+						{
+							return true;
+						}
+					}
+					else
+					{
+						testSquare = Board.board[moveFromFile + displace][moveFromRank];
+					
+						if((testSquare.getType() != "blank") && (displace != displaceMax))
+						{
+							return false;
+						}
+						else if((displace == displaceMax) && ((testSquare.getType() == "blank") || (testSquare.getColor() != plyColor)))
+						{
+							return true;
+						}
+					}
 				}
 			}
 		}
-		return legalMoves;
+		return false;
 	}
 
-	public int getTimesMoved() {
-		return timesMoved;
-	}
-
-	public void setTimesMoved(int timesMoved) {
-		this.timesMoved = timesMoved;
-	}
 }

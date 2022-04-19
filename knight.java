@@ -1,115 +1,78 @@
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-import java.io.IOException;
-import java.util.ArrayList;
+public class Knight extends Piece
+{
 
-import javax.swing.ImageIcon;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-
-@SuppressWarnings("serial")
-public class knight extends JLabel implements piece{
-	private int file;
-	private int rank;
-	private boolean isWhite;
-	private int timesMoved;
-	
-	public knight(int rank, int file, boolean isWhite) throws IOException {
-		super();
-		this.file = file;
-		this.rank = rank;
-		this.isWhite = isWhite;
-		timesMoved = 0;
+	public Knight(String colorIn) 
+	{
+		super(colorIn, "knight");
 		
-		if(isWhite) {
-			ImageIcon wKnight = new ImageIcon("wKnight.png");
-			setIcon(wKnight);
-		}else {
-			ImageIcon bKnight = new ImageIcon("bKnight.png");
-			setIcon(bKnight);
+		if(color == "white")
+		{
+			symbol = "wKn";
 		}
-//		addMouseListener(new MouseListener() {
-//			public void mouseClicked(MouseEvent e) {
-//				System.out.println("knight");
-//			}
-//
-//			public void mousePressed(MouseEvent e) {
-//				
-//			}
-//
-//			public void mouseReleased(MouseEvent e) {
-//				
-//			}
-//
-//			public void mouseEntered(MouseEvent e) {
-//				
-//			}
-//
-//			public void mouseExited(MouseEvent e) {
-//				
-//			}
-//		});
-	}
-
-	public int getFile() {
-		return file;
-	}
-
-	public void setFile(int file) {
-		this.file = file;
-	}
-
-	public int getRank() {
-		return rank;
-	}
-
-	public void setRank(int rank) {
-		this.rank = rank;
-	}
-
-	public boolean isWhite() {
-		return isWhite;
-	}
-
-	public void setWhite(boolean isWhite) {
-		this.isWhite = isWhite;
-	}
-	
-	public void move(int file, int rank) {
-		setFile(file);
-		setRank(rank);
-	}
-	
-	public boolean isLegal(int file, int rank) {
-		boolean legal = false;
-		if((file == getFile() + 1 && rank == getRank() + 2) || (file == getFile() + 2 && rank == getRank() + 1) || (file == getFile() - 1 && rank == getRank() + 2) || (file == getFile() - 2 && rank == getRank() + 1)) {
-			legal = true;
+		else{
+			symbol = "bKn";
 		}
-		if((file == getFile() - 1 && rank == getRank() - 2) || (file == getFile() - 2 && rank == getRank() - 1) || (file == getFile() + 1 && rank == getRank() - 2) || (file == getFile() + 2 && rank == getRank() - 1)) {
-			legal = true;
-		}
-		return legal;
 	}
-	
-	public ArrayList<JPanel> highlightLegal() throws IOException {
-		board cBoard = new board();
-		cBoard.getChessBoard();
-		ArrayList<JPanel> legalMoves = new ArrayList<JPanel>();
-		for(int rank = 0; rank < 8; rank++) {
-			for(int file = 0; file < 8; file++) {
-				if(isLegal(file, rank)) {
-					legalMoves.add(cBoard.getChessBoard()[rank][file]);
+
+	public boolean checkMove(int[] moveFromReq, int[] moveToReq, String plyColor, boolean testKing)
+	{
+		
+		int moveFromRank = moveFromReq[0];
+		int moveFromFile = moveFromReq[1];
+		int moveToX = moveToReq[0];
+		int moveToY = moveToReq[1];
+		
+		Square toSquare = Board.board[moveToY][moveToX];
+		
+		if(!testKing)
+		{
+			if(toSquare.getType() == "king")
+			{
+				return false;
+			}
+		}
+		
+		boolean locationPass = false;
+		
+		for(int displaceX = -2; displaceX <= 2; displaceX++){
+		
+			if(displaceX != 0)
+			{
+				if(moveToX == moveFromRank + displaceX)
+				{
+					
+					if(Math.abs(displaceX) == 1)
+					{ 
+						for(int displaceY = -2; displaceY <= 2; displaceY += 4)
+						{
+							if(moveToY == moveFromFile + displaceY)
+							{
+								locationPass = true;
+							}
+						}
+					}
+					else
+					{ 
+						for(int displaceY = -1; displaceY <= 1; displaceY += 2)
+						{
+							if(moveToY == moveFromFile + displaceY)
+							{
+								locationPass = true;
+							}
+						}
+					}
 				}
 			}
 		}
-		return legalMoves;
-	}
-
-	public int getTimesMoved() {
-		return timesMoved;
-	}
-
-	public void setTimesMoved(int timesMoved) {
-		this.timesMoved = timesMoved;
+		if(locationPass)
+		{
+			
+			if((toSquare.getType() == "blank") || (toSquare.getColor() != plyColor))
+			{
+				return true;
+			}
+		}
+		
+		return false;
 	}
 }

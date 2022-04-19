@@ -2,16 +2,31 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 @SuppressWarnings("serial")
-public class scoreboard extends JPanel{
+public class Scoreboard extends JPanel{
 	private int p1Score;
 	private int p2Score;
+	private String p1Name;
+	private String p2Name;
 	
 	//each piece worth given amount, taking will update this
-	public scoreboard() {
+	public Scoreboard(String p1Name, String p2Name) {
+		this.p1Name = p1Name;
+		this.p2Name = p2Name;
 		this.p1Score = 0;
 		this.p2Score = 0;
 		
-		JLabel score = new JLabel("Scoreboard");
+		int diff = 0;
+		String text = "";
+		if(p1Score > p2Score) {
+			diff = p1Score - p2Score;
+			text = p1Name + ": +" + diff + "      " + p2Name + ": -" + diff;
+		}else if(p1Score < p2Score) {
+			diff = p2Score - p1Score;
+			text = p1Name + ": -" + diff + "      " + p2Name + ": +" + diff;
+		}else {
+			text = p1Name + " and " + p2Name + " are even in material";
+		}
+		JLabel score = new JLabel(text);
 		add(score);
 	}
 	
@@ -27,5 +42,36 @@ public class scoreboard extends JPanel{
 	public void setP2Score(int p2Score) {
 		this.p2Score = p2Score;
 	}
+
+	public String getP1Name() {
+		return p1Name;
+	}
+
+	public void setP1Name(String p1Name) {
+		this.p1Name = p1Name;
+	}
+
+	public String getP2Name() {
+		return p2Name;
+	}
+
+	public void setP2Name(String p2Name) {
+		this.p2Name = p2Name;
+	}
 	
+	public void updateScoreboard() {
+		int diff = 0;
+		String text = "";
+		if(p1Score > p2Score) {
+			diff = p1Score - p2Score;
+			text = p1Name + ": +" + diff + "\n" + p2Name + ": -" + diff;
+		}else if(p1Score < p2Score) {
+			diff = p2Score - p1Score;
+			text = p1Name + ": -" + diff + "\n" + p2Name + ": +" + diff;
+		}else {
+			text = p1Name + " and " + p2Name + " are even in material";
+		}
+		JLabel score = new JLabel(text);
+		add(score);
+	}
 }

@@ -1,9 +1,9 @@
-import java.io.IOException;
-import java.util.ArrayList;
-import javax.swing.JPanel;
-
-public interface piece {
-	public void move(int file, int rank);
-	public boolean isLegal(int file, int rank);
-	public ArrayList<JPanel> highlightLegal() throws IOException ;
+public abstract class Piece extends Square
+{
+	
+	public Piece(String colorIn, String typeIn)
+	{
+		super(typeIn);
+		color = colorIn;
+	} 
 }
