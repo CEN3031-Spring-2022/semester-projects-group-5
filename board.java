@@ -191,6 +191,7 @@ public abstract class Board
 	{
 		System.out.println("=====> CHESS <=====");
 		//adding gui stuff
+		setup();
 		JFrame frame = new JFrame();
 		frame.setLayout(new BorderLayout());
 		
@@ -202,35 +203,29 @@ public abstract class Board
 		
 		MainMenu mainMenu = new MainMenu();
 		frame.add(mainMenu);
-		BoardGui boardOnGui = new BoardGui();
-		frame.add(boardOnGui);
+		BoardGui boardOnGui = new BoardGui(board);
+		frame.add(boardOnGui, BorderLayout.CENTER);
 		
 		Scoreboard score = new Scoreboard(ply1Name, ply2Name);
 		frame.add(score, BorderLayout.SOUTH);
 		frame.setVisible(true);
 		frame.pack();
-		frame.setSize(817,866);
+		//frame.setSize(817,866);  no mlisten
 		frame.setResizable(false);
 		frame.setDefaultCloseOperation(3);
 		
-		setup(); 
 		while(true)
 		{
 			for(int runNum = 1; runNum <= 2; runNum++)
 			{
-				draw();
-				boardOnGui.update(board);
-				clearFile();
-				
+				System.out.println(board[4][0]);
 				int move[][] = new int[2][2];
 				
 				while(true)
 				{
 					if(runNum == 1)
-					{
-						
+					{	
 						readTextfile();
-						System.out.println();						
 						move = whitePly.getMove();
 						clearFile();
 					}
@@ -282,6 +277,13 @@ public abstract class Board
 					}
 					System.out.println("Invalid move. Try again.");
 				}
+				boardOnGui = new BoardGui(board);
+				frame.remove(boardOnGui);
+				frame.add(boardOnGui);
+				frame.pack();
+				//frame.setSize(817,866); no mlisten
+				draw();
+				clearFile();
 			}
 		}
 	}

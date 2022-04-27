@@ -102,30 +102,30 @@ public class BoardGui extends JPanel{
                 }else if(e.getY() >= 700 && e.getY() < 800) {
                     square += "1";
                 }
-				File myObj = new File("chessMove.txt");
-                try {
-                    if(myObj.createNewFile())
-                    {
-                        System.out.println("File created: + myObj.getName()");
-                    }
-                    else
-                    {
-                        System.out.println("File already exists ");
-                    }
-                } catch (IOException e1) {
-                    System.out.println("An error occurred ");
-                    e1.printStackTrace();
-                }
-                try {
-                    FileWriter myWriter = new FileWriter("chessMove.txt");
-                    myWriter.write(square);
-                    myWriter.close();
-
-                } catch (IOException e1) {
-                    System.out.println("An error occurred ");
-                    e1.printStackTrace();
-                }
-				System.out.println(square);
+//				File myObj = new File("chessMove.txt");
+//                try {
+//                    if(myObj.createNewFile())
+//                    {
+//                        System.out.println("File created: + myObj.getName()");
+//                    }
+//                    else
+//                    {
+//                        System.out.println("File already exists ");
+//                    }
+//                } catch (IOException e1) {
+//                    System.out.println("An error occurred ");
+//                    e1.printStackTrace();
+//                }
+//                try {
+//                    FileWriter myWriter = new FileWriter("chessMove.txt");
+//                    myWriter.write(square);
+//                    myWriter.close();
+//
+//                } catch (IOException e1) {
+//                    System.out.println("An error occurred ");
+//                    e1.printStackTrace();
+//                }
+//				System.out.println(square);
 			}
 
 			public void mousePressed(MouseEvent e) {
@@ -226,87 +226,38 @@ public class BoardGui extends JPanel{
 		});
 	}
 	
-	public void update(Square[][] b) {
-		ImageIcon wPa = new ImageIcon("wPawn.png");
-		wPa = scale(wPa);
-		ImageIcon wBi = new ImageIcon("wBishop.png");
-		wBi = scale(wBi);
-		ImageIcon wKn = new ImageIcon("wKnight.png");
-		wKn = scale(wKn);
-		ImageIcon wRo = new ImageIcon("wRook.png");
-		wRo = scale(wRo);
-		ImageIcon wKi = new ImageIcon("wKing.png");
-		wKi = scale(wKi);
-		ImageIcon wQu = new ImageIcon("wQueen.png");
-		wQu = scale(wQu);
+	public BoardGui(Square[][] b) {
+		super();
+		setLayout(new GridLayout(8,8));
+		chessBoard = new JPanel[8][8];
+		moves = 0;
 		
-		ImageIcon bPa = new ImageIcon("bPabn.png");
-		bPa = scale(bPa);
-		ImageIcon bBi = new ImageIcon("bBishop.png");
-		bBi = scale(bBi);
-		ImageIcon bKn = new ImageIcon("bKnight.png");
-		bKn = scale(bKn);
-		ImageIcon bRo = new ImageIcon("bRook.png");
-		bRo = scale(bRo);
-		ImageIcon bKi = new ImageIcon("bKing.png");
-		bKi = scale(bKi);
-		ImageIcon bQu = new ImageIcon("bQueen.png");
-		bQu = scale(bQu);
-		
-		for(int i = 0; i < 8; i++) {
-			for(int j = 0; j < 8; j++) {
-				String symb = b[i][j].getSymbol();
-				if(symb == "wPa") {
-					JLabel picture = new JLabel(wPa);
-					chessBoard[i][j].add(picture);
-					System.out.println(i + ", " + j);
+		boolean white = true;
+		for(int rank = 0; rank < 8; rank++) {
+			for(int file = 0; file < 8; file++) {
+				if(white) {
+					JPanel s = new JPanel();
+					s.setBackground(new Color(0xc6d6df)); // 0xc6d6df
+					JLabel thing = b[rank][file].getPicture();
+					s.add(thing);
+					thing.setVisible(true);
+//					chessBoard[rank][file] = s;
+//					add(chessBoard[rank][file]);
+					add(s);
+				}else {
+					JPanel s = new JPanel();
+					s.setBackground(new Color(0x779ab0));
+					JLabel thing = b[rank][file].getPicture();
+					s.add(thing);
+					thing.setVisible(true);
+//					chessBoard[rank][file] = s;
+//					add(chessBoard[rank][file]);
+					add(s);
 				}
-				if(symb == "wKn") {
-					JLabel picture = new JLabel(wKn);
-					chessBoard[i][j].add(picture);
-				}
-				if(symb == "wBi") {
-					JLabel picture = new JLabel(wBi);
-					chessBoard[i][j].add(picture);
-				}
-				if(symb == "wRo") {
-					JLabel picture = new JLabel(wRo);
-					chessBoard[i][j].add(picture);
-				}
-				if(symb == "wKi") {
-					JLabel picture = new JLabel(wKi);
-					chessBoard[i][j].add(picture);
-				}
-				if(symb == "wQu") {
-					JLabel picture = new JLabel(wQu);
-					chessBoard[i][j].add(picture);
-				}
-				
-				if(symb == "bPa") {
-					JLabel picture = new JLabel(bPa);
-					chessBoard[i][j].add(picture);
-				}
-				if(symb == "bKn") {
-					JLabel picture = new JLabel(bKn);
-					chessBoard[i][j].add(picture);
-				}
-				if(symb == "bBi") {
-					JLabel picture = new JLabel(bBi);
-					chessBoard[i][j].add(picture);
-				}
-				if(symb == "bRo") {
-					JLabel picture = new JLabel(bRo);
-					chessBoard[i][j].add(picture);
-				}
-				if(symb == "bKi") {
-					JLabel picture = new JLabel(bKi);
-					chessBoard[i][j].add(picture);
-				}
-				if(symb == "bQu") {
-					JLabel picture = new JLabel(bQu);
-					chessBoard[i][j].add(picture);
-				}
+				white = !white;
 			}
+			System.out.println();
+			white = !white;
 		}
 	}
 
