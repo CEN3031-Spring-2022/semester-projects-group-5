@@ -203,7 +203,7 @@ public abstract class Board
 		MainMenu mainMenu = new MainMenu();
 		frame.add(mainMenu);
 		BoardGui boardOnGui = new BoardGui();
-		frame.add(boardOnGui);
+		//frame.add(boardOnGui);
 		
 		Scoreboard score = new Scoreboard(ply1Name, ply2Name);
 		frame.add(score, BorderLayout.SOUTH);
