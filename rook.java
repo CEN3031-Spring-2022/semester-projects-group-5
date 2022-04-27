@@ -29,12 +29,15 @@ public class Rook extends Piece
 		String direction;
 		
 		if(!testKing)
-		{
-			if(toSquare.getType() == "king")
-			{
-				return false;
-			}
-		}
+        {
+            if(toSquare.getType() == "king")
+            {
+                if(!(toSquare.getColor() == color))
+                {
+                    return true;
+                }
+            }
+        }
 		
 		if(moveToY == moveFromFile)
 		{

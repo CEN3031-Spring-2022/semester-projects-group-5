@@ -37,12 +37,15 @@ public class Bishop extends Piece
 		int moveDistance = Math.abs(moveToX - moveFromRank);
 		
 		if(!testKing)
-		{
-			if(toSquare.getType() == "king")
-			{
-				return false; 
-			}
-		}
+        {
+            if(toSquare.getType() == "king")
+            {
+                if(!(toSquare.getColor() == color))
+                {
+                    return true;
+                }
+            }
+        }
 		
 		String direction;
 		

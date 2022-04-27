@@ -27,12 +27,15 @@ public class Knight extends Piece
 		Square toSquare = Board.board[moveToY][moveToX];
 		
 		if(!testKing)
-		{
-			if(toSquare.getType() == "king")
-			{
-				return false;
-			}
-		}
+        {
+            if(toSquare.getType() == "king")
+            {
+                if(!(toSquare.getColor() == color))
+                {
+                    return true;
+                }
+            }
+        }
 		
 		boolean locationPass = false;
 		
