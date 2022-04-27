@@ -1,3 +1,5 @@
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 class Player 
@@ -5,6 +7,7 @@ class Player
 	private String name;
 	private String color;
 	private final Scanner scanner = new Scanner(System.in);
+	BoardGui gui = new BoardGui();
 	
 	Player(String nameIn, String colorIn)
 	{
@@ -56,9 +59,10 @@ class Player
 				{
 					System.out.print(name + ", input you location to move to. (EX: E4)\n>> ");
 				}
-				String moveIn = scanner.nextLine().trim();
+				String moveIn;
+				//moveIn = scanner.next();
+				moveIn = gui.getSquare();
 			
-				
 				if(!moveIn.isEmpty() && moveIn.length() <= 2 && !(moveIn.contains(" ") || moveIn.contains("\t")))
 				{
 					if(!Character.isDigit(moveIn.charAt(0)) && Character.isDigit(moveIn.charAt(1)))

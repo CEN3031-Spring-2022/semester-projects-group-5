@@ -1,4 +1,8 @@
 import java.awt.BorderLayout;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.Scanner;
 import javax.swing.*;
 
@@ -155,6 +159,33 @@ public abstract class Board
 		}
 		return name;
 	}
+	public static void readTextfile()
+    {
+        try {
+              File myObj = new File("chessMove.txt");
+              Scanner myReader = new Scanner(myObj);
+              while (myReader.hasNextLine()) {
+                String data = myReader.nextLine();
+                System.out.println(data);
+              }
+              myReader.close();
+            } catch (FileNotFoundException e) {
+              System.out.println("An error occurred.");
+              e.printStackTrace();
+            }
+    }
+    public static void clearFile()
+    {
+        try {
+            FileWriter myWriter = new FileWriter("chessMove.txt");
+            myWriter.write("");
+            myWriter.close();
+
+        } catch (IOException e1) {
+            System.out.println("An error occurred ");
+            e1.printStackTrace();
+        }
+    }
 	
 	public static void main(String[] args) 
 	{
@@ -172,7 +203,7 @@ public abstract class Board
 		MainMenu mainMenu = new MainMenu();
 		frame.add(mainMenu);
 		BoardGui boardOnGui = new BoardGui();
-		//frame.add(boardOnGui);
+		frame.add(boardOnGui);
 		
 		Scoreboard score = new Scoreboard(ply1Name, ply2Name);
 		frame.add(score, BorderLayout.SOUTH);
@@ -183,27 +214,33 @@ public abstract class Board
 		frame.setDefaultCloseOperation(3);
 		
 		setup(); 
-		
 		while(true)
 		{
 			for(int runNum = 1; runNum <= 2; runNum++)
 			{
 				draw();
+				boardOnGui.update(board);
+				clearFile();
 				
 				int move[][] = new int[2][2];
 				
 				while(true)
 				{
-				
 					if(runNum == 1)
 					{
+						
+						readTextfile();
+						System.out.println();						
 						move = whitePly.getMove();
+						clearFile();
 					}
 					else
 					{
+						readTextfile();
 						move = blackPly.getMove();
+						clearFile();
 					}
-				
+					
 					if(move[0][0] == -1)
 					{
 						System.out.println("Invalid location. Try again.");
