@@ -3,6 +3,8 @@
 public class Bishop extends Piece
 {
 
+	public int pointValue = 3;
+
 	public Bishop(String colorIn) 
 	{
 		super(colorIn, "bishop");

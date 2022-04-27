@@ -1,5 +1,8 @@
 public class Queen extends Piece
 {
+	
+	public int pointValue = 9;
+	
 	public Queen(String colorIn) 
 	{
 		super(colorIn, "queen");

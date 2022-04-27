@@ -1,6 +1,8 @@
 public class Knight extends Piece
 {
 
+	public pointValue = 3;
+
 	public Knight(String colorIn) 
 	{
 		super(colorIn, "knight");

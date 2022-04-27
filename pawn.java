@@ -1,5 +1,8 @@
 public class Pawn extends Piece
 {
+	
+	public int pointValue = 1;
+	
 	public Pawn(String colorIn) 
 	{
 		super(colorIn, "pawn");

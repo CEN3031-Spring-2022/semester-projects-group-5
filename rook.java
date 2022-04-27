@@ -1,6 +1,8 @@
 public class Rook extends Piece
 {
+	public int pointValue = 5;
 	public boolean hasMoved = false;
+	
 	public Rook(String colorIn) 
 	{
 		super(colorIn, "rook");
