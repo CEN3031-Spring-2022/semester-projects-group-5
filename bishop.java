@@ -3,8 +3,6 @@
 public class Bishop extends Piece
 {
 
-	public int pointValue = 3;
-
 	public Bishop(String colorIn) 
 	{
 		super(colorIn, "bishop");
@@ -18,7 +16,12 @@ public class Bishop extends Piece
 			symbol = "bBi";
 		}
 	}
-
+	
+	public String getPiece()
+	{
+		return symbol;	
+	}
+	
 	public boolean checkMove(int[] moveFromReq, int[] moveToReq, String plyColor, boolean testKing) 
 	{
 		
@@ -66,33 +69,41 @@ public class Bishop extends Piece
 		
 		Square testSquare;
 		
-		for(int diagMoveAway = 1; diagMoveAway <= moveDistance; diagMoveAway++)
+		int displaceMaxX = Math.abs(moveToX - moveFromRank);
+		int displaceMaxY = Math.abs(moveToY - moveFromFile); 
+		
+		for(int displaceX = 1; displaceX <= displaceMaxX; displaceX++)
 		{
+			for(int displaceY = 1; displaceY <= displaceMaxY; displaceY++)
+			{
+				if(direction == "topRight")
+				{
+					testSquare = Board.board[moveFromFile - displaceY][moveFromRank + displaceX];
+				}
 			
-			if(direction == "topRight")
-			{
-				testSquare = Board.board[moveFromFile - diagMoveAway][moveFromRank + diagMoveAway];
-			}
-			else if(direction == "botRight")
-			{
-				testSquare = Board.board[moveFromFile + diagMoveAway][moveFromRank + diagMoveAway];
-			}
-			else if(direction == "topLeft")
-			{
-				testSquare = Board.board[moveFromFile - diagMoveAway][moveFromRank - diagMoveAway];
-			}
-			else
-			{ 
-				testSquare = Board.board[moveFromFile + diagMoveAway][moveFromRank - diagMoveAway];
-			}
+				else if(direction == "botRight")
+				{
+					testSquare = Board.board[moveFromFile + displaceY][moveFromRank + displaceX];
+				}
+				
+				else if(direction == "topLeft")
+				{
+					testSquare = Board.board[moveFromFile - displaceY][moveFromRank - displaceX];
+				}
+				
+				else
+				{ 
+					testSquare = Board.board[moveFromFile + displaceY][moveFromRank - displaceX];
+				}
 			
-			if((testSquare.getType() != "blank") && (diagMoveAway != moveDistance))
-			{
-				return false;
-			}
-			else if((diagMoveAway == moveDistance) && ((testSquare.getColor() != plyColor) || (testSquare.getType() == "blank")))
-			{
-				return true;
+				if((testSquare.getType() != "blank") && (displaceMaxX != moveDistance) && (displaceMaxY != moveDistance))
+				{
+					return false;
+				}
+				else if((displaceMaxX == moveDistance) && (displaceMaxY == moveDistance) && ((testSquare.getColor() != plyColor) || (testSquare.getType() == "blank")))
+				{
+					return true;
+				}
 			}
 		}
 		return false;
