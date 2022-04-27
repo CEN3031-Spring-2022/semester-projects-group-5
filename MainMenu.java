@@ -42,8 +42,9 @@ public class MainMenu extends JPanel implements ActionListener{
 		updatedStatus = !isSelected;
 		System.out.println(updatedStatus);
 		if(updatedStatus == true){
-			BoardGui b1;
-
+			Board b1;
+			//TODO: Code behavior to get the PVP window to pop up
+			// TODO: Add action listeners for the other buttons
 			
 		}
 		
