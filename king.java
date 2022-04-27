@@ -1,6 +1,6 @@
 public class King extends Piece
 {
-
+	public boolean hasMoved;
 	public King(String colorIn) 
 	{
 		super(colorIn, "king");

@@ -1,5 +1,6 @@
 public class Rook extends Piece
 {
+	public boolean hasMoved = false;
 	public Rook(String colorIn) 
 	{
 		super(colorIn, "rook");
@@ -13,7 +14,7 @@ public class Rook extends Piece
 			symbol = "bRo";
 		}
 	}
-
+	
 	public boolean checkMove(int[] moveFromReq, int[] moveToReq, String plyColor, boolean testKing) 
 	{
 		int moveFromRank = moveFromReq[0];
