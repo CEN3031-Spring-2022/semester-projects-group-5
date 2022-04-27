@@ -37,12 +37,15 @@ public class Queen extends Piece
 		String type;
 		
 		if(!testKing)
-		{
-			if(toSquare.getType() == "king")
-			{
-				return false;
-			}
-		}
+        {
+            if(toSquare.getType() == "king")
+            {
+                if(!(toSquare.getColor() == color))
+                {
+                    return true;
+                }
+            }
+        }
 		
 		if(moveToY == moveFromFile)
 		{
