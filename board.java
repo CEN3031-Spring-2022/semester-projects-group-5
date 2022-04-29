@@ -151,41 +151,48 @@ public abstract class Board
 			System.out.print("Player " + playerNum + " please enter your name.\n>> ");
 			name = scanner.nextLine().trim();
 			
-			if(!name.isEmpty() && !(name.contains(" ") || name.contains("\t")) && !name.equals(prevName)) 
-				
+			if(!name.isEmpty() && !(name.contains(" ") || name.contains("\t")) && !name.equals(prevName))
 				break;
 			else
 				System.out.println("Invalid name. Try again.");
 		}
 		return name;
 	}
-	public static void readTextfile()
-    {
-        try {
-              File myObj = new File("chessMove.txt");
-              Scanner myReader = new Scanner(myObj);
-              while (myReader.hasNextLine()) {
-                String data = myReader.nextLine();
-                System.out.println(data);
-              }
-              myReader.close();
-            } catch (FileNotFoundException e) {
-              System.out.println("An error occurred.");
-              e.printStackTrace();
-            }
-    }
-    public static void clearFile()
-    {
-        try {
-            FileWriter myWriter = new FileWriter("chessMove.txt");
-            myWriter.write("");
-            myWriter.close();
-
-        } catch (IOException e1) {
-            System.out.println("An error occurred ");
-            e1.printStackTrace();
-        }
-    }
+	public static String read() {
+		try {
+			File file = new File("chessMove.txt");
+			@SuppressWarnings("resource")
+			Scanner r = new Scanner(file);
+			while(r.hasNextLine()) {
+				String move = r.nextLine();
+				return move;
+			}
+		}catch(FileNotFoundException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+	private static int convertCharNumtoNum(char charIn){
+		int numOut = -1;
+		int convertedNum = Character.getNumericValue(charIn); 
+		
+		for(int i: Board.SIDE_NUMS){
+			if(i == convertedNum){
+				numOut = convertedNum;   
+			}
+		}
+		return numOut;
+	}
+	private static int convertCharToNum(char charIn){
+		int numOut = -1;
+		
+		for(int i = 0; i < Board.SIDE_LETTERS.length; i++){
+			if(Board.SIDE_LETTERS[i] == charIn){
+				numOut = i;
+			}
+		}
+		return numOut;
+	}
 	
 	public static void main(String[] args) 
 	{
@@ -210,7 +217,7 @@ public abstract class Board
 		frame.add(score, BorderLayout.SOUTH);
 		frame.setVisible(true);
 		frame.pack();
-		//frame.setSize(817,866);  no mlisten
+		frame.setSize(817,866);
 		frame.setResizable(false);
 		frame.setDefaultCloseOperation(3);
 		
@@ -218,22 +225,32 @@ public abstract class Board
 		{
 			for(int runNum = 1; runNum <= 2; runNum++)
 			{
-				System.out.println(board[4][0]);
 				int move[][] = new int[2][2];
-				
-				while(true)
-				{
-					if(runNum == 1)
-					{	
-						readTextfile();
+				while(true){
+					if(runNum == 1){
+//						String moveIn = read();
+//						int rank, file;
+//						if((rank = convertCharToNum(Character.toUpperCase(moveIn.charAt(0)))) != -1){
+//							if((file = convertCharNumtoNum(moveIn.charAt(1))) != -1){
+//								file = 8 - file;
+//								int tempArray[] = {rank, file};
+//								move[runNum - 1] = tempArray;
+//							}
+//						}
 						move = whitePly.getMove();
-						clearFile();
 					}
 					else
 					{
-						readTextfile();
+//						String moveIn = read();
+//						int rank, file;
+//						if((rank = convertCharToNum(Character.toUpperCase(moveIn.charAt(0)))) != -1){
+//							if((file = convertCharNumtoNum(moveIn.charAt(1))) != -1){
+//								file = 8 - file;
+//								int tempArray[] = {rank, file};
+//								move[runNum - 1] = tempArray;
+//							}
+//						}
 						move = blackPly.getMove();
-						clearFile();
 					}
 					
 					if(move[0][0] == -1)
@@ -277,13 +294,12 @@ public abstract class Board
 					}
 					System.out.println("Invalid move. Try again.");
 				}
-				boardOnGui = new BoardGui(board);
 				frame.remove(boardOnGui);
+				boardOnGui = new BoardGui(board);
 				frame.add(boardOnGui);
 				frame.pack();
-				//frame.setSize(817,866); no mlisten
+				frame.setSize(817,866);
 				draw();
-				clearFile();
 			}
 		}
 	}

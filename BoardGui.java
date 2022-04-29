@@ -102,30 +102,15 @@ public class BoardGui extends JPanel{
                 }else if(e.getY() >= 700 && e.getY() < 800) {
                     square += "1";
                 }
-//				File myObj = new File("chessMove.txt");
-//                try {
-//                    if(myObj.createNewFile())
-//                    {
-//                        System.out.println("File created: + myObj.getName()");
-//                    }
-//                    else
-//                    {
-//                        System.out.println("File already exists ");
-//                    }
-//                } catch (IOException e1) {
-//                    System.out.println("An error occurred ");
-//                    e1.printStackTrace();
-//                }
-//                try {
-//                    FileWriter myWriter = new FileWriter("chessMove.txt");
-//                    myWriter.write(square);
-//                    myWriter.close();
-//
-//                } catch (IOException e1) {
-//                    System.out.println("An error occurred ");
-//                    e1.printStackTrace();
-//                }
-//				System.out.println(square);
+                try {
+                    FileWriter w = new FileWriter("chessMove.txt");
+                    w.write(square);
+                    w.close();
+                } catch (IOException er) {
+                    System.out.println("An error occurred ");
+                    er.printStackTrace();
+                }
+				System.out.println(square);
 			}
 
 			public void mousePressed(MouseEvent e) {
