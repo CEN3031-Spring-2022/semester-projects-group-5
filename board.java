@@ -294,6 +294,36 @@ public abstract class Board
 					}
 					System.out.println("Invalid move. Try again.");
 				}
+				for(int i = 0; i < 8; i++) {
+					if(board[0][i].getSymbol() == "wPa") {
+						System.out.println("What would you like to promote to?\n1. Queen\n2. Rook\n3. Bishop\n4. Knight");
+						int input = scanner.nextInt();
+						if(input == 1) {
+							board[0][i] = new Queen("white");
+						}else if (input == 2) {
+							board[0][i] = new Rook("white");
+						}else if (input == 3) {
+							board[0][i] = new Bishop("white");
+						}else if (input == 4) {
+							board[0][i] = new Knight("white");
+						}
+					}
+				}
+				for(int i = 0; i < 8; i++) {
+					if(board[7][i].getSymbol() == "bPa") {
+						System.out.println("What would you like to promote to?\n1. Queen\n2. Rook\n3. Bishop\n4. Knight");
+						int input = scanner.nextInt();
+						if(input == 1) {
+							board[7][i] = new Queen("black");
+						}else if (input == 2) {
+							board[7][i] = new Rook("black");
+						}else if (input == 3) {
+							board[7][i] = new Bishop("black");
+						}else if (input == 4) {
+							board[7][i] = new Knight("black");
+						}
+					}
+				}
 				frame.remove(boardOnGui);
 				boardOnGui = new BoardGui(board);
 				frame.add(boardOnGui);
