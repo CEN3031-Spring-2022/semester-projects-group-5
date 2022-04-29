@@ -1,8 +1,16 @@
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
+import java.awt.BorderLayout;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.Scanner;
 
 public class MainMenu extends JPanel implements ActionListener{
+	public static Square board[][] = new Square[8][8];
+
 	public MainMenu() {
 		JPanel topPanel = new JPanel();
 		JPanel midPanel = new JPanel();
@@ -43,6 +51,13 @@ public class MainMenu extends JPanel implements ActionListener{
 		System.out.println(updatedStatus);
 		if(updatedStatus == true){
 			Board b1;
+			Frame frame1 = new Frame();
+			frame1.setVisible(true);
+			BoardGui boardOnGui = new BoardGui();
+			frame1.pack();
+			
+			frame1.add(boardOnGui, BorderLayout.CENTER);
+			frame1.setVisible(true);
 			//TODO: Code behavior to get the PVP window to pop up
 			// TODO: Add action listeners for the other buttons
 			

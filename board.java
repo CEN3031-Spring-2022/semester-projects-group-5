@@ -201,8 +201,10 @@ public abstract class Board
 		Player whitePly = new Player(ply1Name, "white");
 		Player blackPly = new Player(ply2Name, "black");
 		
-		MainMenu mainMenu = new MainMenu();
-		frame.add(mainMenu);
+		
+		//MainMenu mainMenu = new MainMenu();
+		//frame.add(mainMenu);
+		
 		BoardGui boardOnGui = new BoardGui(board);
 		frame.add(boardOnGui, BorderLayout.CENTER);
 		
@@ -210,7 +212,7 @@ public abstract class Board
 		frame.add(score, BorderLayout.SOUTH);
 		frame.setVisible(true);
 		frame.pack();
-		//frame.setSize(817,866);  no mlisten
+		frame.setSize(817,866);  
 		frame.setResizable(false);
 		frame.setDefaultCloseOperation(3);
 		
@@ -277,13 +279,15 @@ public abstract class Board
 					}
 					System.out.println("Invalid move. Try again.");
 				}
+				
 				boardOnGui = new BoardGui(board);
 				frame.remove(boardOnGui);
 				frame.add(boardOnGui);
 				frame.pack();
-				//frame.setSize(817,866); no mlisten
+				frame.setSize(817,866); 
 				draw();
 				clearFile();
+				
 			}
 		}
 	}
