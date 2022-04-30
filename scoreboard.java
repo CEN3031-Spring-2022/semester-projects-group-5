@@ -53,10 +53,10 @@ public class Scoreboard extends JPanel{
 		}
 		if(p1Score > p2Score) {
 			diff = p1Score - p2Score;
-			text = p1Name + ": +" + diff + "     " + p2Name + ": -" + diff;
+			text = p1Name + ": +" + diff + "                " + p2Name + ": -" + diff;
 		}else if(p1Score < p2Score) {
 			diff = p2Score - p1Score;
-			text = p1Name + ": -" + diff + "     " + p2Name + ": +" + diff;
+			text = p1Name + ": -" + diff + "                " + p2Name + ": +" + diff;
 		}else {
 			text = p1Name + " and " + p2Name + " are even in material";
 		}
