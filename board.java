@@ -334,8 +334,6 @@ public abstract class Board
 				frame.pack();
 				frame.setSize(817,866); 
 				draw();
-				//clearFile();
-				*/
 			}
 		}
 	}
