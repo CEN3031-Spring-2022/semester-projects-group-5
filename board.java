@@ -10,7 +10,7 @@ public abstract class Board
 {	
 	static final char SIDE_LETTERS[] = {'A','B','C','D','E','F','G','H'};
 	static final int SIDE_NUMS[] = {1,2,3,4,5,6,7,8};
-	public static Square board[][] = new Square[8][8];
+	public static Square[][] board = new Square[8][8];
 	
 	private static final Scanner scanner = new Scanner(System.in);
 	
@@ -358,7 +358,10 @@ public abstract class Board
 				boardOnGui = new BoardGui(board);
 				frame.add(boardOnGui);
 				frame.pack();
-				frame.setSize(817,866); 
+				frame.setSize(817,866);
+				frame.remove(score);
+				score = new Scoreboard(ply1Name, ply2Name);
+				frame.add(score, BorderLayout.SOUTH);
 				draw();
 				if(gameOver) {
 					System.exit(0);
