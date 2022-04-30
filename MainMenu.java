@@ -10,7 +10,7 @@ import java.util.Scanner;
 
 public class MainMenu extends JPanel implements ActionListener{
 	public static Square board[][] = new Square[8][8];
-
+	private boolean isSelected;
 	public MainMenu() {
 		JPanel topPanel = new JPanel();
 		JPanel midPanel = new JPanel();
@@ -22,7 +22,7 @@ public class MainMenu extends JPanel implements ActionListener{
 		JButton PvP = new JButton("Play Vs Player");
 		JButton puzzle = new JButton("Puzzles");
 		JButton bot = new JButton("Play Vs Bot");
-		
+		PvP.setPreferredSize(new Dimension(1000, 700));
 		JLabel authors = new JLabel("created by: Alek, Evan, Bradley, Michael");
 		
 		topPanel.add(welcome);
@@ -39,29 +39,18 @@ public class MainMenu extends JPanel implements ActionListener{
 		PvP.addActionListener(this);	
 	}
 
+	public void SetIsSelected(boolean isSelected){
+		this.isSelected = isSelected;
+	}
+
+	public boolean GetIsSelected(){
+		return isSelected;
+	}
+
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
-		boolean isSelected = false;
-		boolean updatedStatus = false;
 		JButton src = (JButton) e.getSource();
-		System.out.println("button pressed");
-		
-		updatedStatus = !isSelected;
-		System.out.println(updatedStatus);
-		if(updatedStatus == true){
-			Board b1;
-			Frame frame1 = new Frame();
-			frame1.setVisible(true);
-			BoardGui boardOnGui = new BoardGui();
-			frame1.pack();
-			
-			frame1.add(boardOnGui, BorderLayout.CENTER);
-			frame1.setVisible(true);
-			//TODO: Code behavior to get the PVP window to pop up
-			// TODO: Add action listeners for the other buttons
-			
-		}
-		
+		setVisible(false);
+		SetIsSelected(true);
 	}
 }
