@@ -6,7 +6,7 @@ import java.io.IOException;
 import java.util.Scanner;
 import javax.swing.*;
 
-public abstract class Board 
+public abstract class Board
 {	
 	static final char SIDE_LETTERS[] = {'A','B','C','D','E','F','G','H'};
 	static final int SIDE_NUMS[] = {1,2,3,4,5,6,7,8};
