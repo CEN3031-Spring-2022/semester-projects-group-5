@@ -201,7 +201,7 @@ public abstract class Board
 		setup();
 		JFrame frame = new JFrame();
 		frame.setLayout(new BorderLayout());
-
+		boolean gameOver = false;
 		
 		String ply1Name = getName(1, null);
 		String ply2Name = getName(2, ply1Name);
@@ -328,12 +328,44 @@ public abstract class Board
 						}
 					}
 				}
+				boolean wWin = true;
+				for(int i = 0; i < 8; i++) {
+					for(int j = 0; j < 8; j++) {
+						if(board[i][j].getSymbol() == "bKi") {
+							wWin = false;
+						}
+					}
+				}
+				if(wWin) {
+					System.out.println("White Wins");
+					gameOver = true;
+					break;
+				}
+				boolean bWin = true;
+				for(int i = 0; i < 8; i++) {
+					for(int j = 0; j < 8; j++) {
+						if(board[i][j].getSymbol() == "wKi") {
+							bWin = false;
+						}
+					}
+				}
+				if(bWin) {
+					System.out.println("Black Wins");
+					gameOver = true;
+					break;
+				}
 				frame.remove(boardOnGui);
 				boardOnGui = new BoardGui(board);
 				frame.add(boardOnGui);
 				frame.pack();
 				frame.setSize(817,866); 
 				draw();
+				if(gameOver) {
+					System.exit(0);
+				}
+			}
+			if(gameOver) {
+				System.exit(0);
 			}
 		}
 	}
