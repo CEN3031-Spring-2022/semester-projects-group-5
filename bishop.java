@@ -4,6 +4,8 @@ public class Bishop extends Piece
 {
 
 	public int pointValue = 3;
+	public int rank;
+	public int file;
 
 	public Bishop(String colorIn) 
 	{
@@ -23,7 +25,25 @@ public class Bishop extends Piece
 	{
 		return symbol;	
 	}
+	/*
+	public void setRank(int rank)
+	{
+		this.rank = rank;
+	}
+	public void setFile(int file)
+	{
+		this.file = file;
+	}
 	
+	public int getRank()
+	{
+		return rank;
+	}
+	public int getFile()
+	{
+		return file;
+	}
+	*/
 	public boolean checkMove(int[] moveFromReq, int[] moveToReq, String plyColor, boolean testKing) 
 	{
 		

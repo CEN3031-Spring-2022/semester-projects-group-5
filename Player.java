@@ -29,12 +29,15 @@ class Player
 		return numOut;
 	}
 	
-	private int convertCharNumtoNum(char charIn){
+	private int convertCharNumtoNum(char charIn)
+	{
 		int numOut = -1;
 		int convertedNum = Character.getNumericValue(charIn); 
 		
-		for(int i: Board.SIDE_NUMS){
-			if(i == convertedNum){
+		for(int i: Board.SIDE_NUMS)
+		{
+			if(i == convertedNum)
+			{
 				numOut = convertedNum;   
 			}
 		}
@@ -57,17 +60,24 @@ class Player
 					System.out.print(name + ", input you location to move to. (EX: E4)\n>> ");
 				}
 				String moveIn;
-				moveIn = scanner.next();
+				moveIn = scanner.nextLine();
 			
-				if(!moveIn.isEmpty() && moveIn.length() <= 2 && !(moveIn.contains(" ") || moveIn.contains("\t"))){
-					if(!Character.isDigit(moveIn.charAt(0)) && Character.isDigit(moveIn.charAt(1))){
+				if(!moveIn.isEmpty() && moveIn.length() <= 2 && !(moveIn.contains(" ") || moveIn.contains("\t")))
+				{
+					if(!Character.isDigit(moveIn.charAt(0)) && Character.isDigit(moveIn.charAt(1)))
+					{
 						int rank, file;
-						if((rank = convertCharToNum(Character.toUpperCase(moveIn.charAt(0)))) != -1){
-							if((file = convertCharNumtoNum(moveIn.charAt(1))) != -1){
+			
+						if((rank = convertCharToNum(Character.toUpperCase(moveIn.charAt(0)))) != -1)
+						{
+							if((file = convertCharNumtoNum(moveIn.charAt(1))) != -1)
+							{
 								file = 8 - file;
 								int tempArray[] = {rank, file};
-								if(runNum == 1){
-									if(Board.board[file][rank].getType() == "blank" || Board.board[file][rank].getColor() != color){ 
+								if(runNum == 1)
+								{
+									if(Board.board[file][rank].getType() == "blank" || Board.board[file][rank].getColor() != color)
+									{ 
 										tempArray[0] = -1;																
 										tempArray[1] = -1;
 										int[][] errorArray = {tempArray, tempArray};

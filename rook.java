@@ -2,6 +2,8 @@ public class Rook extends Piece
 {
 	public int pointValue = 5;
 	public boolean hasMoved = false;
+	public int rank;
+	public int file;
 	
 	public Rook(String colorIn) 
 	{

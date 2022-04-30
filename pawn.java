@@ -2,6 +2,8 @@ public class Pawn extends Piece
 {
 	
 	public int pointValue = 1;
+	public int rank;
+	public int file;
 	
 	public Pawn(String colorIn) 
 	{
@@ -15,6 +17,7 @@ public class Pawn extends Piece
 			symbol = "bPa";
 		}
 	}
+	
 	
 	public boolean checkMove(int[] moveFromReq, int[] moveToReq, String plyColor, boolean testKing)
 	{

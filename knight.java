@@ -2,6 +2,8 @@ public class Knight extends Piece
 {
 
 	public int pointValue = 3;
+	public int rank;
+	public int file;
 
 	public Knight(String colorIn) 
 	{
@@ -15,7 +17,25 @@ public class Knight extends Piece
 			symbol = "bKn";
 		}
 	}
-
+	/*
+	public void setRank(int rank)
+	{
+		this.rank = rank;
+	}
+	public void setFile(int file)
+	{
+		this.file = file;
+	}
+	
+	public int getRank()
+	{
+		return rank;
+	}
+	public int getFile()
+	{
+		return file;
+	}
+	*/
 	public boolean checkMove(int[] moveFromReq, int[] moveToReq, String plyColor, boolean testKing)
 	{
 		

@@ -52,6 +52,18 @@ public abstract class Board
 		board[7][6] = new Knight("white");
 		board[7][7] = new Rook("white");
 		
+		for (int rank = 0; rank < board.length; rank++)
+		{
+			for (int file = 0; file < board.length; file++)
+			{
+				if (board[rank][file].getSymbol() != "   ")
+				{
+					board[rank][file].setRank(rank);
+				}
+				
+			}
+		}
+		
 	}
 	
 	private static String checkForCheckOrMate(String plyColor)
@@ -151,48 +163,15 @@ public abstract class Board
 			System.out.print("Player " + playerNum + " please enter your name.\n>> ");
 			name = scanner.nextLine().trim();
 			
-			if(!name.isEmpty() && !(name.contains(" ") || name.contains("\t")) && !name.equals(prevName))
+			if(!name.isEmpty() && !(name.contains(" ") || name.contains("\t")) && !name.equals(prevName)) 
+				
 				break;
 			else
 				System.out.println("Invalid name. Try again.");
 		}
 		return name;
 	}
-	public static String read() {
-		try {
-			File file = new File("chessMove.txt");
-			@SuppressWarnings("resource")
-			Scanner r = new Scanner(file);
-			while(r.hasNextLine()) {
-				String move = r.nextLine();
-				return move;
-			}
-		}catch(FileNotFoundException e) {
-			e.printStackTrace();
-		}
-		return null;
-	}
-	private static int convertCharNumtoNum(char charIn){
-		int numOut = -1;
-		int convertedNum = Character.getNumericValue(charIn); 
-		
-		for(int i: Board.SIDE_NUMS){
-			if(i == convertedNum){
-				numOut = convertedNum;   
-			}
-		}
-		return numOut;
-	}
-	private static int convertCharToNum(char charIn){
-		int numOut = -1;
-		
-		for(int i = 0; i < Board.SIDE_LETTERS.length; i++){
-			if(Board.SIDE_LETTERS[i] == charIn){
-				numOut = i;
-			}
-		}
-		return numOut;
-	}
+	
 	
 	public static void main(String[] args) 
 	{
@@ -208,6 +187,8 @@ public abstract class Board
 		
 		Player whitePly = new Player(ply1Name, "white");
 		Player blackPly = new Player(ply2Name, "black");
+		HAL9001 HAL = new HAL9001("HAL", "black");
+		
 		
 		BoardGui boardOnGui = new BoardGui(board);
 		frame.add(boardOnGui, BorderLayout.CENTER);
@@ -224,37 +205,33 @@ public abstract class Board
 		frame.setSize(817,866);  
 		frame.setResizable(false);
 		frame.setDefaultCloseOperation(3);
+		frame.remove(score);
+		score = new Scoreboard(ply1Name, ply2Name);
+		frame.add(score, BorderLayout.SOUTH);
+		
+		if(mainMenu.getIsSelected()) 
+		{
+			HAL.setArrayOfPieces();
+			ply2Name = "HAL";
+		}
 		
 		while(true)
 		{
 			for(int runNum = 1; runNum <= 2; runNum++)
 			{
+				System.out.println(board[4][0]);
 				int move[][] = new int[2][2];
-				while(true){
-					if(runNum == 1){
-//						String moveIn = read();
-//						int rank, file;
-//						if((rank = convertCharToNum(Character.toUpperCase(moveIn.charAt(0)))) != -1){
-//							if((file = convertCharNumtoNum(moveIn.charAt(1))) != -1){
-//								file = 8 - file;
-//								int tempArray[] = {rank, file};
-//								move[runNum - 1] = tempArray;
-//							}
-//						}
+				
+				while(true)
+				{
+					if(runNum == 1)
+					{	
 						move = whitePly.getMove();
 					}
 					else
 					{
-//						String moveIn = read();
-//						int rank, file;
-//						if((rank = convertCharToNum(Character.toUpperCase(moveIn.charAt(0)))) != -1){
-//							if((file = convertCharNumtoNum(moveIn.charAt(1))) != -1){
-//								file = 8 - file;
-//								int tempArray[] = {rank, file};
-//								move[runNum - 1] = tempArray;
-//							}
-//						}
-						move = blackPly.getMove();
+						if(mainMenu.getIsSelected()) move = HAL.getMove();
+						else move = blackPly.getMove();
 					}
 					
 					if(move[0][0] == -1)
@@ -358,10 +335,7 @@ public abstract class Board
 				boardOnGui = new BoardGui(board);
 				frame.add(boardOnGui);
 				frame.pack();
-				frame.setSize(817,866);
-				frame.remove(score);
-				score = new Scoreboard(ply1Name, ply2Name);
-				frame.add(score, BorderLayout.SOUTH);
+				frame.setSize(817,866); 
 				draw();
 				if(gameOver) {
 					System.exit(0);
@@ -370,6 +344,8 @@ public abstract class Board
 			if(gameOver) {
 				System.exit(0);
 			}
+			}
 		}
 	}
-}
+
+

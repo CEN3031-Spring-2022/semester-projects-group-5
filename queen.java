@@ -1,31 +1,26 @@
-public class Queen extends Piece
+public class Rook extends Piece
 {
+	public int pointValue = 5;
+	public boolean hasMoved = false;
+	public int rank;
+	public int file;
 	
-	public int pointValue = 9;
-	
-	public Queen(String colorIn) 
+	public Rook(String colorIn) 
 	{
-		super(colorIn, "queen");
+		super(colorIn, "rook");
 		
 		if(color == "white")
 		{
-			symbol = "wQu";
+			symbol = "wRo";
 		}
 		else
 		{
-			symbol = "bQu";
+			symbol = "bRo";
 		}
 	}
-	public String getPiece()
-	{
-		return symbol;	
-	}
-	
-	@Override
 	
 	public boolean checkMove(int[] moveFromReq, int[] moveToReq, String plyColor, boolean testKing) 
 	{
-		
 		int moveFromRank = moveFromReq[0];
 		int moveFromFile = moveFromReq[1];
 		int moveToX = moveToReq[0];
@@ -34,7 +29,6 @@ public class Queen extends Piece
 		Square toSquare = Board.board[moveToY][moveToX];
 		
 		String direction;
-		String type;
 		
 		if(!testKing)
         {
@@ -51,13 +45,11 @@ public class Queen extends Piece
 		{
 			if(moveToX > moveFromRank)
 			{
-				direction = "right";
-				type = "straight";
+				direction = "rite";
 			}
 			else
 			{
 				direction = "left";
-				type = "straight";
 			}
 		}
 		
@@ -66,38 +58,10 @@ public class Queen extends Piece
 			if(moveToY > moveFromFile)
 			{
 				direction = "bot";
-				type = "straight";
 			}
 			else
 			{
 				direction = "top";
-				type = "straight";
-			}
-		}
-		else if(moveToX > moveFromRank)
-		{
-			if(moveToY < moveFromFile)
-			{
-				direction = "topRight";
-				type = "diagonal";
-			}
-			else
-			{
-				direction = "botRight";
-				type = "diagonal";
-			}
-		}
-		else if(moveToX < moveFromRank)
-		{
-			if(moveToY < moveFromFile)
-			{
-				direction = "topLeft";
-				type = "diagonal";
-			}
-			else
-			{
-				direction = "botLeft";
-				type = "diagonal";
 			}
 		}
 		else
@@ -107,42 +71,34 @@ public class Queen extends Piece
 		
 		Square testSquare;
 		
-		if(type == "diagonal")
+		if((direction == "rite") || (direction == "left"))
 		{
-			int moveDistance = Math.abs(moveToX - moveFromRank);
+			int displaceMax = Math.abs(moveToX - moveFromRank); 
 		
-			int displaceMaxX = Math.abs(moveToX - moveFromRank);
-			int displaceMaxY = Math.abs(moveToY - moveFromFile); 
-			
-			for(int displaceX = 1; displaceX <= displaceMaxX; displaceX++)
+			for(int displace = 1; displace <= displaceMax; displace++)
 			{
-				for(int displaceY = 1; displaceY <= displaceMaxY; displaceY++)
+				if(direction == "rite")
 				{
-					if(direction == "topRight")
-					{
-						testSquare = Board.board[moveFromFile - displaceY][moveFromRank + displaceX];
-					}
-				
-					else if(direction == "botRight")
-					{
-						testSquare = Board.board[moveFromFile + displaceY][moveFromRank + displaceX];
-					}
+					testSquare = Board.board[moveFromFile][moveFromRank + displace];
 					
-					else if(direction == "topLeft")
-					{
-						testSquare = Board.board[moveFromFile - displaceY][moveFromRank - displaceX];
-					}
-					
-					else
-					{ 
-						testSquare = Board.board[moveFromFile + displaceY][moveFromRank - displaceX];
-					}
-				
-					if((testSquare.getType() != "blank") && (displaceMaxX != moveDistance) && (displaceMaxY != moveDistance))
+					if((testSquare.getType() != "blank") && (displace != displaceMax))
 					{
 						return false;
 					}
-					else if((displaceMaxX == moveDistance) && (displaceMaxY == moveDistance) && ((testSquare.getColor() != plyColor) || (testSquare.getType() == "blank")))
+					else if((displace == displaceMax) && ((testSquare.getType() == "blank") || (testSquare.getColor() != plyColor)))
+					{
+						return true;
+					}
+				}
+				else
+				{
+					testSquare = Board.board[moveFromFile][moveFromRank - displace];
+					
+					if((testSquare.getType() != "blank") && (displace != displaceMax))
+					{
+						return false;
+					}
+					else if((displace == displaceMax) && ((testSquare.getType() == "blank") || (testSquare.getColor() != plyColor)))
 					{
 						return true;
 					}
@@ -150,78 +106,40 @@ public class Queen extends Piece
 			}
 		}
 		else
-		{
-			if((direction == "right") || (direction == "left"))
+		{ 
+			int displaceMax = Math.abs(moveToY - moveFromFile); 
+				
+			for(int displace = 1; displace <= displaceMax; displace++)
 			{
-				int displaceMax = Math.abs(moveToX - moveFromRank);
-		
-				for(int displace = 1; displace <= displaceMax; displace++)
+				
+				if(direction == "top")
 				{
-					if(direction == "right")
-					{
-						testSquare = Board.board[moveFromFile][moveFromRank + displace];
+					testSquare = Board.board[moveFromFile - displace][moveFromRank];
 					
-						if((testSquare.getType() != "blank") && (displace != displaceMax))
-						{
-							return false;
-						}
-						else if((displace == displaceMax) && ((testSquare.getType() == "blank") || (testSquare.getColor() != plyColor)))
-						{
-							return true;
-						}
+					if((testSquare.getType() != "blank") && (displace != displaceMax))
+					{
+						return false;
 					}
-					else
+					else if((displace == displaceMax) && ((testSquare.getType() == "blank") || (testSquare.getColor() != plyColor)))
 					{
-						testSquare = Board.board[moveFromFile][moveFromRank - displace];
-					
-						if((testSquare.getType() != "blank") && (displace != displaceMax))
-						{
-							return false;
-						}
-						else if((displace == displaceMax) && ((testSquare.getType() == "blank") || (testSquare.getColor() != plyColor)))
-						{
-							return true;
-						}
+						return true;
 					}
 				}
-			}
-			else
-			{
-				int displaceMax = Math.abs(moveToY - moveFromFile);
-				
-				for(int displace = 1; displace <= displaceMax; displace++)
-				{	
-				
-					if(direction == "top")
-					{
-						testSquare = Board.board[moveFromFile - displace][moveFromRank];
+				else
+				{
+					testSquare = Board.board[moveFromFile + displace][moveFromRank];
 					
-						if((testSquare.getType() != "blank") && (displace != displaceMax))
-						{
-							return false;
-						}
-						else if((displace == displaceMax) && ((testSquare.getType() == "blank") || (testSquare.getColor() != plyColor)))
-						{
-							return true;
-						}
+					if((testSquare.getType() != "blank") && (displace != displaceMax))
+					{
+						return false;
 					}
-					else
+					else if((displace == displaceMax) && ((testSquare.getType() == "blank") || (testSquare.getColor() != plyColor)))
 					{
-						testSquare = Board.board[moveFromFile + displace][moveFromRank];
-					
-						if((testSquare.getType() != "blank") && (displace != displaceMax))
-						{
-							return false;
-						}
-						else if((displace == displaceMax) && ((testSquare.getType() == "blank") || (testSquare.getColor() != plyColor)))
-						{
-							return true;
-						}
+						return true;
 					}
 				}
 			}
 		}
 		return false;
 	}
-
 }

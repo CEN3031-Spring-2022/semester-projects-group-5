@@ -2,6 +2,8 @@ public class King extends Piece
 {
 	public boolean hasMoved;
 	public int pointValue = 999;
+	public int rank;
+	public int file;
 	
 	public King(String colorIn) 
 	{
@@ -16,7 +18,7 @@ public class King extends Piece
 			symbol = "bKi";
 		}
 	}
-
+	
 	public boolean checkMove(int[] moveFromReq, int[] moveToReq, String plyColor, boolean testKing)
 	{
 		

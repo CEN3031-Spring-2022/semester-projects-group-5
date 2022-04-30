@@ -10,6 +10,8 @@ public abstract class Square
 	protected String symbol;
 	public String color; //black white or null for blanks
 	public String type;
+	public int rank;
+	public int file;
 	
 	public Square(String typeIn)
 	{
@@ -94,6 +96,24 @@ public abstract class Square
 	public String getType()
 	{
 		return type;
+	}
+	
+	public void setRank(int rank)
+	{
+		this.rank = rank;
+	}
+	public void setFile(int file)
+	{
+		this.file = file;
+	}
+	
+	public int getRank()
+	{
+		return rank;
+	}
+	public int getFile()
+	{
+		return file;
 	}
 	
 	public ImageIcon scale(ImageIcon i) {

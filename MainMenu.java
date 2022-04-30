@@ -10,7 +10,7 @@ import java.util.Scanner;
 
 public class MainMenu extends JPanel implements ActionListener{
 	public static Square board[][] = new Square[8][8];
-	private boolean isSelected;
+	private boolean isSelected = false;
 	public MainMenu() {
 		JPanel topPanel = new JPanel();
 		JPanel midPanel = new JPanel();
@@ -36,21 +36,36 @@ public class MainMenu extends JPanel implements ActionListener{
 		add(midPanel);
 		add(botPanel);
 		add(authors);	
-		PvP.addActionListener(this);	
+		PvP.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e)
+			{
+				setVisible(false);
+			}
+		});	
+		bot.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e)
+			{
+				setVisible(false);
+				setIsSelected(true);
+			}
+		});
 	}
 
-	public void SetIsSelected(boolean isSelected){
+	public void setIsSelected(boolean isSelected){
 		this.isSelected = isSelected;
 	}
 
-	public boolean GetIsSelected(){
+	public boolean getIsSelected(){
 		return isSelected;
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		JButton src = (JButton) e.getSource();
-		setVisible(false);
-		SetIsSelected(true);
+		// TODO Auto-generated method stub
+		
 	}
+
+	
+		
+	
 }
